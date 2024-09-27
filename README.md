@@ -1,6 +1,7 @@
-# TabunganEmas
+# TabunganKebutuhan
 
 Merupakan Project Praktik  Kerja Lapangan (PKL)
+Menggunakan Vue.js dan Tailwind CSS untuk User Interface (Front End)
 
 ## Recommended IDE Setup
 
