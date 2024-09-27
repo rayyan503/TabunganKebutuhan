@@ -14,7 +14,7 @@ const toggleMenu = () => {
     <div class="container mx-auto flex justify-between items-center">
       <!-- Logo Section -->
       <div class="text-white text-lg font-semibold">
-        <RouterLink to="/">Tabungan Emas</RouterLink>
+        <RouterLink to="/">Menabung Kebutuhan</RouterLink>
       </div>
 
       <!-- Hamburger menu for mobile view -->
@@ -53,10 +53,10 @@ const toggleMenu = () => {
           Login
         </RouterLink>
         <RouterLink
-          to="/register"
+          to="/daftar"
           class="text-white text-center bg-red-600 hover:bg-red-500 px-4 py-2 rounded-md"
         >
-          Register
+          Daftar
         </RouterLink>
       </nav>
     </div>

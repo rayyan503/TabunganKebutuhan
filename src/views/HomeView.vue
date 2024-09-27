@@ -7,7 +7,7 @@ import NavbarComponent from '../components/NavbarComponent.vue'
 
   <section class="py-12">
     <div class="container mx-auto text-center">
-      <h1 class="text-4xl font-bold">Welcome to Tabungan Emas</h1>
+      <h1 class="text-4xl font-bold">Welcome to Menabung Kebutuhan</h1>
       <p class="text-lg mt-4">Enhance your skills with our amazing resources.</p>
       <a
         href="#"
