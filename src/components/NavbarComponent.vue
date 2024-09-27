@@ -10,7 +10,7 @@ const toggleMenu = () => {
 </script>
 
 <template>
-  <header class="bg-blue-500 p-4">
+  <header class="bg-green-600 p-4">
     <div class="container mx-auto flex justify-between items-center">
       <!-- Logo Section -->
       <div class="text-white text-lg font-semibold">
@@ -48,7 +48,7 @@ const toggleMenu = () => {
         <!-- Login and Register Buttons for desktop view -->
         <RouterLink
           to="/login"
-          class="text-white text-center bg-yellow-600 hover:bg-yellow-500 px-4 py-2 rounded-md"
+          class="text-white text-center bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-md"
         >
           Login
         </RouterLink>
@@ -62,19 +62,19 @@ const toggleMenu = () => {
     </div>
 
     <!-- Mobile Dropdown Menu -->
-    <nav v-if="isMenuOpen" class="lg:hidden mt-2 space-y-2 p-2 bg-gray-800 rounded-md">
-      <RouterLink to="/" class="block text-gray-300 hover:text-white">Home</RouterLink>
-      <RouterLink to="/about" class="block text-gray-300 hover:text-white">About</RouterLink>
-      <RouterLink to="/about" class="block text-gray-300 hover:text-white">Contact Us</RouterLink>
+    <nav v-if="isMenuOpen" class="lg:hidden mt-2 space-y-2 p-2 bg-green-600 rounded-md">
+      <RouterLink to="/" class="block text-white hover:text-blue-400">Home</RouterLink>
+      <RouterLink to="/about" class="block text-white hover:text-blue-400">About</RouterLink>
+      <RouterLink to="/about" class="block text-white hover:text-blue-400">Contact Us</RouterLink>
       <RouterLink
         to="/login"
-        class="block text-gray-300 bg-yellow-600 hover:bg-yellow-500 px-4 py-2 rounded-md"
+        class="block text-white bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-md"
       >
         Login
       </RouterLink>
       <RouterLink
         to="/register"
-        class="block text-gray-300 bg-red-600 hover:bg-red-500 px-4 py-2 rounded-md"
+        class="block text-white bg-red-600 hover:bg-red-500 px-4 py-2 rounded-md"
       >
         Register
       </RouterLink>
