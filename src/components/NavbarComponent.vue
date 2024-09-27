@@ -78,7 +78,7 @@ const route = useRoute()
           Login
         </RouterLink>
         <RouterLink
-          to="/register"
+          to="/daftar"
           class="text-white text-center bg-red-600 hover:bg-red-500 px-4 py-2 rounded-md"
         >
           Register
@@ -87,7 +87,7 @@ const route = useRoute()
     </div>
 
     <!-- Mobile Dropdown Menu -->
-    <nav v-if="isMenuOpen" class="lg:hidden mt-2 space-y-2 p-2 bg-green-600 rounded-md">
+    <nav v-if="isMenuOpen" class="lg:hidden mt-2 space-y-2 p-2 bg-blue-500 rounded-md">
       <RouterLink
         to="/"
         :class="[
@@ -122,7 +122,7 @@ const route = useRoute()
         Login
       </RouterLink>
       <RouterLink
-        to="/register"
+        to="/daftar"
         class="block text-white bg-red-600 hover:bg-red-500 px-4 py-2 rounded-md"
       >
         Register
