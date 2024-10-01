@@ -49,7 +49,7 @@ const route = useRoute()
             route.path === '/' ? 'border-b-2 border-gray-300' : ''
           ]"
         >
-          Home
+          Beranda
         </RouterLink>
         <RouterLink
           to="/about"
@@ -58,16 +58,16 @@ const route = useRoute()
             route.path === '/about' ? 'border-b-2 border-gray-300' : ''
           ]"
         >
-          About
+          Tentang
         </RouterLink>
         <RouterLink
-          to="/contact"
+          to="/deposit"
           :class="[
             'text-white hover:text-blue-300 px-4 py-2',
-            route.path === '/contact' ? 'border-b-2 border-gray-300' : ''
+            route.path === '/deposit' ? 'border-b-2 border-gray-300' : ''
           ]"
         >
-          Contact Us
+          Menabung
         </RouterLink>
 
         <!-- Login and Register Buttons for desktop view -->
@@ -75,13 +75,13 @@ const route = useRoute()
           to="/login"
           class="text-white text-center bg-yellow-500 hover:bg-yellow-400 px-4 py-2 rounded-md"
         >
-          Login
+          Masuk
         </RouterLink>
         <RouterLink
           to="/daftar"
           class="text-white text-center bg-red-600 hover:bg-red-500 px-4 py-2 rounded-md"
         >
-          Register
+          Daftar
         </RouterLink>
       </nav>
     </div>
@@ -95,7 +95,7 @@ const route = useRoute()
           route.path === '/' ? 'border-b-2 border-gray-300' : ''
         ]"
       >
-        Home
+        Beranda
       </RouterLink>
       <RouterLink
         to="/about"
@@ -104,28 +104,28 @@ const route = useRoute()
           route.path === '/about' ? 'border-b-2 border-gray-300' : ''
         ]"
       >
-        About
+        Tentang
       </RouterLink>
       <RouterLink
-        to="/contact"
+        to="/deposit"
         :class="[
           'block text-white hover:text-blue-300',
-          route.path === '/contact' ? 'border-b-2 border-gray-300' : ''
+          route.path === '/deposit' ? 'border-b-2 border-gray-300' : ''
         ]"
       >
-        Contact Us
+        Deposit
       </RouterLink>
       <RouterLink
         to="/login"
         class="block text-white bg-yellow-500 hover:bg-yellow-400 px-4 py-2 rounded-md"
       >
-        Login
+        Masuk
       </RouterLink>
       <RouterLink
         to="/daftar"
         class="block text-white bg-red-600 hover:bg-red-500 px-4 py-2 rounded-md"
       >
-        Register
+        Daftar
       </RouterLink>
     </nav>
   </header>

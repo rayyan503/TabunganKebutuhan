@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-//import celenganImage from '../assets/celengan.png'
+import alamSatu from '../assets/alam1.webp'
 
 // Show/Hide password toggle
 const showPassword = ref(false)
@@ -16,7 +16,7 @@ const toggleShowPassword = () => {
       <div
         class="hidden md:flex w-full md:w-1/2 text-white bg-green-500 p-8s rounded-t-lg md:rounded-t-none md:rounded-l-lg flex-col items-center justify-center"
         :style="{
-          //backgroundImage: `url(${celenganImage})`,
+          backgroundImage: `url(${alamSatu})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           height: '100vh'

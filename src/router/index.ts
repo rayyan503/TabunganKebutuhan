@@ -20,6 +20,11 @@ const router = createRouter({
       component: () => import('../views/ContactView.vue')
     },
     {
+      path: '/deposit',
+      name: 'deposit',
+      component: () => import('../views/DepositView.vue')
+    },
+    {
       path: '/login',
       name: 'login',
       component: () => import('../auth/LoginPage.vue')
