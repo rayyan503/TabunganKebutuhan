@@ -6,6 +6,7 @@ import fotoAlam03 from '../assets/nabungfoto03.jpg'
 import fotoAlam04 from '../assets/finance01.png'
 import { computed, onMounted, ref } from 'vue'
 import FooterComponent from '@/components/FooterComponent.vue'
+import Swal from 'sweetalert2'
 
 const isLoading = ref(true)
 
@@ -27,12 +28,64 @@ const periods = ref([
   { label: '10 Minggu', days: 70 }
 ])
 
-// User selections
 const selectedAmount = ref(amounts.value[0])
 const selectedPeriod = ref(periods.value[0])
 
-// Calculate total
 const totalSavings = computed(() => selectedAmount.value * selectedPeriod.value.days)
+const showSavingsForm = () => {
+  Swal.fire({
+    title: 'Formulir Menabung',
+    html: `
+      <div class="text-left space-y-4">
+        <label for="fullName" class="block text-sm font-medium">Nama Lengkap</label>
+        <input type="text" id="fullName" class="swal2-input" placeholder="Nama Lengkap" />
+
+        <label for="address" class="block text-sm font-medium">Alamat</label>
+        <input type="text" id="address" class="swal2-input" placeholder="Alamat" />
+
+        <label for="nik" class="block text-sm font-medium">NIK</label>
+        <input type="number" id="nik" class="swal2-input" placeholder="NIK" />
+
+        <label for="purpose" class="block text-sm font-medium">Tujuan Menabung</label>
+        <input type="text" id="purpose" class="swal2-input" placeholder="Tujuan Menabung" />
+
+         <label for="amount" class="block text-sm font-medium">Nominal</label>
+        <input type="number" id="amount" class="swal2-input" placeholder="Masukkan nominal" />
+
+        <label for="period" class="block text-sm font-medium">Lama Menabung (hari)</label>
+        <input type="number" id="period" class="swal2-input" placeholder="Masukkan jumlah hari" />
+      </div>
+    `,
+    showCancelButton: true,
+    confirmButtonText: 'Simpan',
+    customClass: {
+      popup: 'rounded-lg p-8 max-w-md w-full',
+      title: 'text-2xl font-bold',
+      confirmButton: 'bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded',
+      cancelButton: 'bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded'
+    },
+    preConfirm: () => {
+      const fullName = (document.getElementById('fullName') as HTMLInputElement).value
+      const address = (document.getElementById('address') as HTMLInputElement).value
+      const nik = (document.getElementById('nik') as HTMLInputElement).value
+      const purpose = (document.getElementById('purpose') as HTMLInputElement).value
+      const amount = (document.getElementById('amount') as HTMLSelectElement).value
+      const period = (document.getElementById('period') as HTMLSelectElement).value
+
+      if (!fullName || !address || !nik || !purpose || !amount || !period) {
+        Swal.showValidationMessage('Harap lengkapi semua kolom')
+        return false
+      }
+
+      return { fullName, address, nik, purpose, amount, period }
+    }
+  }).then((result) => {
+    if (result.isConfirmed) {
+      console.log('Form Data:', result.value)
+      Swal.fire('Tersimpan!', 'Pendaftaran Anda Sedang Diproses', 'success')
+    }
+  })
+}
 </script>
 
 <template>
@@ -50,7 +103,6 @@ const totalSavings = computed(() => selectedAmount.value * selectedPeriod.value.
         Banner Partai
       </div>
 
-      <!-- Mari Menabung Section -->
       <div class="bg-white py-16 px-4 sm:px-6 lg:px-8 text-center mt-32">
         <h2 class="text-3xl font-bold mb-4">Mari Menabung</h2>
         <p class="text-gray-600 max-w-2xl mx-auto mb-8">
@@ -58,7 +110,6 @@ const totalSavings = computed(() => selectedAmount.value * selectedPeriod.value.
           ut labore et dolore magna aliqua.
         </p>
 
-        <!-- Image Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div class="lg:col-span-1">
             <div class="aspect-w-16 aspect-h-9">
@@ -95,6 +146,7 @@ const totalSavings = computed(() => selectedAmount.value * selectedPeriod.value.
 
             <button
               class="bg-green-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-600"
+              :onclick="showSavingsForm"
             >
               Ayo Menabung
             </button>
@@ -121,7 +173,6 @@ const totalSavings = computed(() => selectedAmount.value * selectedPeriod.value.
               </select>
             </div>
 
-            <!-- Dropdown for Period -->
             <div class="col-span-1">
               <label for="period" class="block text-sm font-medium text-gray-700">Periode</label>
               <select
@@ -135,7 +186,6 @@ const totalSavings = computed(() => selectedAmount.value * selectedPeriod.value.
               </select>
             </div>
 
-            <!-- Total Savings Display -->
             <div class="col-span-1 flex items-center">
               <p class="text-lg font-semibold">Total: Rp. {{ totalSavings.toLocaleString() }}</p>
             </div>
