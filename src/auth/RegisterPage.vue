@@ -5,7 +5,7 @@
       <div
         class="hidden md:flex w-full md:w-1/2 bg-green-500 text-white p-8 rounded-t-lg md:rounded-t-none md:rounded-l-lg flex-col items-center justify-center"
         :style="{
-          //backgroundImage: `url(${celengImage})`,
+          backgroundImage: `url(${alamDua})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           height: '100vh'
@@ -128,7 +128,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-//import celengImage from '../assets/celengan01.png'
+import alamDua from '../assets/alam2.jpg'
 import { useRouter } from 'vue-router'
 
 const name = ref('')

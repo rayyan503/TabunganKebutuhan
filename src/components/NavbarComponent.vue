@@ -1,16 +1,19 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView, useRoute } from 'vue-router'
 
 const isMenuOpen = ref(false)
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
 }
+
+// Mendapatkan rute aktif
+const route = useRoute()
 </script>
 
 <template>
-  <header class="bg-green-600 p-4">
+  <header class="bg-blue-500 p-4">
     <div class="container mx-auto flex justify-between items-center">
       <!-- Logo Section -->
       <div class="text-white text-lg font-semibold">
@@ -39,18 +42,40 @@ const toggleMenu = () => {
 
       <!-- Desktop Navigation Menu -->
       <nav class="hidden lg:flex space-x-4">
-        <RouterLink to="/" class="text-white hover:text-blue-300 px-4 py-2">Home</RouterLink>
-        <RouterLink to="/about" class="text-white hover:text-blue-300 px-4 py-2">About</RouterLink>
-        <RouterLink to="/about" class="text-white hover:text-blue-300 px-4 py-2"
-          >Contact Us</RouterLink
+        <RouterLink
+          to="/"
+          :class="[
+            'text-white hover:text-blue-300 px-4 py-2',
+            route.path === '/' ? 'border-b-2 border-gray-300' : ''
+          ]"
         >
+          Beranda
+        </RouterLink>
+        <RouterLink
+          to="/about"
+          :class="[
+            'text-white hover:text-blue-300 px-4 py-2',
+            route.path === '/about' ? 'border-b-2 border-gray-300' : ''
+          ]"
+        >
+          Tentang
+        </RouterLink>
+        <RouterLink
+          to="/deposit"
+          :class="[
+            'text-white hover:text-blue-300 px-4 py-2',
+            route.path === '/deposit' ? 'border-b-2 border-gray-300' : ''
+          ]"
+        >
+          Menabung
+        </RouterLink>
 
         <!-- Login and Register Buttons for desktop view -->
         <RouterLink
           to="/login"
-          class="text-white text-center bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-md"
+          class="text-white text-center bg-yellow-500 hover:bg-yellow-400 px-4 py-2 rounded-md"
         >
-          Login
+          Masuk
         </RouterLink>
         <RouterLink
           to="/daftar"
@@ -62,21 +87,45 @@ const toggleMenu = () => {
     </div>
 
     <!-- Mobile Dropdown Menu -->
-    <nav v-if="isMenuOpen" class="lg:hidden mt-2 space-y-2 p-2 bg-green-600 rounded-md">
-      <RouterLink to="/" class="block text-white hover:text-blue-400">Home</RouterLink>
-      <RouterLink to="/about" class="block text-white hover:text-blue-400">About</RouterLink>
-      <RouterLink to="/about" class="block text-white hover:text-blue-400">Contact Us</RouterLink>
+    <nav v-if="isMenuOpen" class="lg:hidden mt-2 space-y-2 p-2 bg-blue-500 rounded-md">
       <RouterLink
-        to="/login"
-        class="block text-white bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-md"
+        to="/"
+        :class="[
+          'block text-white hover:text-blue-300',
+          route.path === '/' ? 'border-b-2 border-gray-300' : ''
+        ]"
       >
-        Login
+        Beranda
       </RouterLink>
       <RouterLink
-        to="/register"
+        to="/about"
+        :class="[
+          'block text-white hover:text-blue-300',
+          route.path === '/about' ? 'border-b-2 border-gray-300' : ''
+        ]"
+      >
+        Tentang
+      </RouterLink>
+      <RouterLink
+        to="/deposit"
+        :class="[
+          'block text-white hover:text-blue-300',
+          route.path === '/deposit' ? 'border-b-2 border-gray-300' : ''
+        ]"
+      >
+        Deposit
+      </RouterLink>
+      <RouterLink
+        to="/login"
+        class="block text-white bg-yellow-500 hover:bg-yellow-400 px-4 py-2 rounded-md"
+      >
+        Masuk
+      </RouterLink>
+      <RouterLink
+        to="/daftar"
         class="block text-white bg-red-600 hover:bg-red-500 px-4 py-2 rounded-md"
       >
-        Register
+        Daftar
       </RouterLink>
     </nav>
   </header>
