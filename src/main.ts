@@ -2,10 +2,10 @@ import './assets/main.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
-import { faGoogle } from '@fortawesome/free-brands-svg-icons'
+import { faFacebook, faGoogle, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons'
 
 // Add the icons to the library
-library.add(faEye, faEyeSlash, faGoogle)
+library.add(faEye, faEyeSlash, faGoogle, faFacebook, faInstagram, faTwitter)
 
 // Register FontAwesomeIcon component globally
 
