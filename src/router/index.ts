@@ -25,6 +25,11 @@ const router = createRouter({
       component: () => import('../views/DepositView.vue')
     },
     {
+      path: '/aktivitas',
+      name: 'aktivitas',
+      component: () => import('../views/ActivityView.vue')
+    },
+    {
       path: '/login',
       name: 'login',
       component: () => import('../auth/LoginPage.vue')

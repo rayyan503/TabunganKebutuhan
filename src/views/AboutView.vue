@@ -17,15 +17,23 @@ onMounted(() => {
 <template>
   <div>
     <div v-if="isLoading" class="flex justify-center items-center h-screen bg-gray-200">
-      <div class="border-4 border-t-transparent border-blue-500 rounded-full w-16 h-16 animate-spin"></div>
+      <div
+        class="border-4 border-t-transparent border-blue-500 rounded-full w-16 h-16 animate-spin"
+      ></div>
     </div>
 
     <div v-else>
       <NavbarComponent />
-      <div class="flex flex-col md:flex-row items-center justify-center p-8 max-w-7xl mx-auto mt-10">
+      <div
+        class="flex flex-col md:flex-row items-center justify-center p-8 max-w-7xl mx-auto mt-10"
+      >
         <!-- Gambar pertama dengan animasi menggunakan Tailwind CSS -->
         <div class="flex-1 mb-6 md:mb-0 animRL">
-          <img :src="gambarSatu" alt="Menabung" class="rounded-lg shadow-lg w-full h-auto animate-bounce-slow" />
+          <img
+            :src="gambarSatu"
+            alt="Menabung"
+            class="rounded-lg shadow-lg w-full h-auto animate-bounce-slow"
+          />
         </div>
 
         <div class="flex-1 md:ml-8 animLR">
@@ -43,9 +51,12 @@ onMounted(() => {
         </div>
       </div>
 
-      <div class="flex flex-col md:flex-row items-center justify-center p-8 max-w-7xl mx-auto" style="margin-top: 20vh">
+      <div
+        class="flex flex-col md:flex-row items-center justify-center p-8 max-w-7xl mx-auto"
+        style="margin-top: 20vh"
+      >
         <div class="flex-1 md:mr-8 blockAnimLR">
-          <h1 class="text-3xl font-bold mb-4">Tentang Menabung</h1>
+          <h1 class="text-3xl font-bold mb-4">Tujuan Menabung</h1>
           <p class="text-lg mb-4">
             Menabung adalah langkah penting dalam mengelola keuangan. Dengan menabung, kita dapat
             mempersiapkan masa depan yang lebih baik, baik untuk kebutuhan darurat maupun untuk
