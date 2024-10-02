@@ -17,6 +17,8 @@ onMounted(() => {
 })
 
 const amounts = ref([5000, 10000, 20000, 50000, 100000])
+const nominals = ref([2000, 4000, 6000, 8000, 10000])
+const uangs = ref([100000, 200000, 300000, 400000, 500000])
 const periods = ref([
   { label: '3 Hari', days: 3 },
   { label: '5 Hari', days: 5 },
@@ -27,11 +29,39 @@ const periods = ref([
   { label: '5 Minggu', days: 35 },
   { label: '10 Minggu', days: 70 }
 ])
+const weeks = ref([
+  { label: '1 Minggu', days: 1 },
+  { label: '2 Minggu', days: 2 },
+  { label: '3 Minggu', days: 3 },
+  { label: '4 Minggu', days: 4 },
+  { label: '5 Minggu' , days: 5 },
+  { label: '6 Minggu', days: 6 },
+  { label: '7 Minggu', days: 7 },
+  { label: '8 Minggu', days: 8 }
+])
+
+const months = ref([
+  { label: '1 Bulan', days: 1 },
+  { label: '2 Bulan', days: 2 },
+  { label: '3 Bulan', days: 3 },
+  { label: '4 Bulan', days: 4 },
+  { label: '5 Bulan', days: 5 },
+  { label: '6 Bulan', days: 6 },
+  { label: '7 Bulan', days: 7 },
+  { label: '8 Bulan', days: 8 }
+]) 
 
 const selectedAmount = ref(amounts.value[0])
 const selectedPeriod = ref(periods.value[0])
+const selectedNominal = ref(nominals.value[0])
+const selectedUang = ref(uangs.value[0])
+const selectedWeek = ref(weeks.value[0])
+const selectedMonth = ref(months.value[0])
 
 const totalSavings = computed(() => selectedAmount.value * selectedPeriod.value.days)
+const totalDuit = computed(() => selectedNominal.value * selectedWeek.value.days)
+const totalMonthDuit = computed(() => selectedUang.value * selectedMonth.value.days)
+
 const showSavingsForm = () => {
   Swal.fire({
     title: 'Formulir Menabung',
@@ -190,6 +220,78 @@ const showSavingsForm = () => {
               <p class="text-lg font-semibold">Total: Rp. {{ totalSavings.toLocaleString() }}</p>
             </div>
           </div>
+
+          <!-- next /weeks -->
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-3 mb-6">
+            <div class="col-span-1">
+              
+              <select
+                id="amount"
+                v-model="selectedNominal"
+                class="block w-full mt-1 p-2 border border-gray-300 bg-white rounded-md shadow-sm"
+              >
+                <option v-for="nominal in nominals" :key="nominal" :value="nominal">
+                  Rp. {{ nominal.toLocaleString() }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Dropdown for Periode weeks -->
+            <div class="col-span-1">
+              
+              <select
+                id="period"
+                v-model= "selectedWeek"
+                class="block w-full mt-1 p-2 border border-gray-300 bg-white rounded-md shadow-sm"
+              >
+                <option v-for="week in weeks" :key="week.label" :value="week">
+                  {{ week.label }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Total Nominal Weeks -->
+            <div class="col-span-1 flex items-center">
+              <p class="text-lg font-semibold">Total: Rp. {{ totalDuit.toLocaleString() }}</p>
+            </div>
+          </div>
+
+          <!-- next /month -->
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-3 mb-6">
+            <div class="col-span-1">
+              
+              <select
+                id="uang"
+                v-model="selectedUang"
+                class="block w-full mt-1 p-2 border border-gray-300 bg-white rounded-md shadow-sm"
+              >
+                <option v-for="uang in uangs" :key="uang" :value="uang">
+                  Rp. {{ uang.toLocaleString() }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Dropdown for Periode month -->
+            <div class="col-span-1">
+              
+              <select
+                id="period"
+                v-model= "selectedMonth"
+                class="block w-full mt-1 p-2 border border-gray-300 bg-white rounded-md shadow-sm"
+              >
+                <option v-for="month in months" :key="month.label" :value="month">
+                  {{ month.label }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Total Nominal month -->
+            <div class="col-span-1 flex items-center">
+              <p class="text-lg font-semibold">Total: Rp. {{ totalMonthDuit.toLocaleString() }}</p>
+            </div>
+          </div>
+
+
         </div>
       </div>
       <FooterComponent />
