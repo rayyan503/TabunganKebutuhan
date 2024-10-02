@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import NavbarComponent from '../components/NavbarComponent.vue'
 import CarouselComponent from '../components/CarouselComponent.vue'
+import FooterComponent from '../components/FooterComponent.vue'
 import { onMounted, ref } from 'vue'
 
 const isLoading = ref(true)
@@ -57,73 +58,54 @@ onMounted(() => {
           </h1>
         </div>
 
-        <div class="blockAnim">
-          <p class="mx-auto mt-9 max-w-2xl text-lg tracking-tight text-slate-700 sm:mt-6">
-            <span class="inline-block"
-              >Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem,
-              cupiditate.</span
-            >
-            <span class="inline-block">Lorem ipsum dolor sit amet.</span>
-          </p>
+      <div class="blockAnimLR">
+        <p class="mx-auto mt-9 max-w-2xl text-lg tracking-tight text-slate-700 sm:mt-6">
+          <span class="inline-block">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem,
+            cupiditate.</span>
+          <span class="inline-block">Lorem ipsum dolor sit amet.</span>
+        </p>
 
-          <div
-            class="mt-12 flex flex-col justify-center gap-y-5 sm:mt-10 sm:flex-row sm:gap-y-0 sm:gap-x-6"
-          >
-            <a
-              class="group inline-flex items-center justify-center rounded-full py-2 px-4 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 bg-slate-900 text-white hover:bg-slate-700 hover:text-slate-100 active:bg-slate-800 active:text-slate-300 focus-visible:outline-slate-900 animate-fade-in-left duration-500 hover:scale-105 hover:shadow-xl"
-              href="#"
-            >
-              <span>Get Started</span>
-            </a>
-          </div>
+        <div class="mt-12 flex flex-col justify-center gap-y-5 sm:mt-10 sm:flex-row sm:gap-y-0 sm:gap-x-6">
+          <a class="group inline-flex items-center justify-center rounded-full py-2 px-4 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 bg-slate-900 text-white hover:bg-slate-700 hover:text-slate-100 active:bg-slate-800 active:text-slate-300 focus-visible:outline-slate-900 animate-fade-in-left duration-500 hover:scale-105 hover:shadow-xl"
+            href="#">
+            <span>Get Started</span>
+          </a>
         </div>
       </div>
 
-      <!-- Tampilan About -->
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center lg:pt-32">
-        <div
-          class="mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10 text-center lg:pt-24 min-w-full lg:h-auto"
-        >
-          <!-- Responsive Grid Layout -->
-          <div
-            class="flex flex-col justify-center items-center gap-5 lg:flex-row lg:h-auto text-wrap"
-          >
-            <!-- Bagian 1: Gambar -->
-            <div class="basis-1/2 blockAnim">
-              <img
-                src="../assets/transfer.png"
-                class="slide duration-500 hover:scale-105 hover:shadow-xl max-w-full h-auto"
-                alt="About Image"
-              />
-            </div>
+    <!-- Tampilan About -->
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center lg:pt-32">
+      <div class="mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10 text-center lg:pt-24 min-w-full lg:h-auto">
+        <!-- Responsive Grid Layout -->
+        <div class="flex flex-col justify-center items-center gap-5 lg:flex-row lg:h-auto text-wrap">
+          <!-- Bagian 1: Gambar -->
+          <div class="basis-1/2 blockAnimRL">
+            <img src="../assets/transfer.png"
+              class="slide duration-500 hover:scale-105 hover:shadow-xl max-w-full h-auto" alt="About Image">
+          </div>
 
-            <!-- Bagian 2: About Me -->
-            <div class="basis-1/2 blockAnim">
-              <h1
-                class="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl"
-              >
-                About Me
-              </h1>
-              <p class="mx-auto mt-9 max-w-2xl text-lg tracking-tight text-slate-700 sm:mt-6">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error alias ex molestiae
-                vero a fugit incidunt corporis laudantium nostrum nobis illum id magni repellendus
-                maxime, ipsam provident assumenda rem tempore.
-              </p>
-              <div
-                class="mt-12 flex flex-col justify-center gap-y-5 sm:mt-10 sm:flex-row sm:gap-y-0 sm:gap-x-6"
-              >
-                <router-link
-                  to="./about"
-                  class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 duration-500 hover:scale-105 hover:shadow-xl"
-                  >Selengkapnya</router-link
-                >
-              </div>
+          <!-- Bagian 2: About Me -->
+          <div class="basis-1/2 blockAnimLR">
+            <h1 class="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl">
+              About
+              Me</h1>
+            <p class="mx-auto mt-9 max-w-2xl text-lg tracking-tight text-slate-700 sm:mt-6">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Error alias ex molestiae vero a fugit incidunt
+              corporis laudantium nostrum nobis illum id magni repellendus maxime, ipsam provident assumenda rem
+              tempore.
+            </p>
+            <div class="mt-12 flex flex-col justify-center gap-y-5 sm:mt-10 sm:flex-row sm:gap-y-0 sm:gap-x-6">
+              <router-link to="./about"
+                class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 duration-500 hover:scale-105 hover:shadow-xl">Selengkapnya</router-link>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Tampilan Footer -->
+  <FooterComponent />
 </template>
 
 <style>
@@ -141,20 +123,22 @@ onMounted(() => {
   }
 }
 
-@keyframes opacity {
+@keyframes appearLR {
   from {
     opacity: 0;
+    transform: translateX(-150px);
   }
 
   to {
     opacity: 1;
+    transform: translateX(0px);
   }
 }
 
-@keyframes appear {
+@keyframes appearRL {
   from {
     opacity: 0;
-    transform: translateX(-150px);
+    transform: translateX(150px);
   }
 
   to {
@@ -167,12 +151,14 @@ onMounted(() => {
   animation: sliding infinite 1.5s ease-in-out;
 }
 
-.autoAnim {
-  animation: opacity 0.3s linear;
+.blockAnimLR {
+  animation: appearLR linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
 }
 
-.blockAnim {
-  animation: appear linear;
+.blockAnimRL {
+  animation: appearRL linear;
   animation-timeline: view();
   animation-range: entry 0% cover 40%;
 }

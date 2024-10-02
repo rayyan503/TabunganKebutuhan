@@ -17,28 +17,18 @@ onMounted(() => {
 <template>
   <div>
     <div v-if="isLoading" class="flex justify-center items-center h-screen bg-gray-200">
-      <div
-        class="border-4 border-t-transparent border-blue-500 rounded-full w-16 h-16 animate-spin"
-      ></div>
+      <div class="border-4 border-t-transparent border-blue-500 rounded-full w-16 h-16 animate-spin"></div>
     </div>
 
     <div v-else>
       <NavbarComponent />
-
-      <!-- Tentang Menabung Section -->
-      <div
-        class="flex flex-col md:flex-row items-center justify-center p-8 max-w-7xl mx-auto mt-10 blockAnim"
-      >
-        <!-- Gambar pertama dengan animasi -->
-        <div class="flex-1 mb-6 md:mb-0">
-          <img
-            :src="gambarSatu"
-            alt="Menabung"
-            class="rounded-lg shadow-lg w-full h-auto animate-bounce-slow"
-          />
+      <div class="flex flex-col md:flex-row items-center justify-center p-8 max-w-7xl mx-auto mt-10">
+        <!-- Gambar pertama dengan animasi menggunakan Tailwind CSS -->
+        <div class="flex-1 mb-6 md:mb-0 animRL">
+          <img :src="gambarSatu" alt="Menabung" class="rounded-lg shadow-lg w-full h-auto animate-bounce-slow" />
         </div>
 
-        <div class="flex-1 md:ml-8">
+        <div class="flex-1 md:ml-8 animLR">
           <h1 class="text-3xl font-bold mb-4">Tentang Menabung</h1>
           <p class="text-lg mb-4">
             Menabung adalah langkah penting dalam mengelola keuangan. Dengan menabung, kita dapat
@@ -53,12 +43,9 @@ onMounted(() => {
         </div>
       </div>
 
-      <!-- Tujuan Menabung Section -->
-      <div
-        class="flex flex-col md:flex-row items-center justify-center p-8 max-w-7xl mx-auto mt-20"
-      >
-        <div class="flex-1 md:mr-8">
-          <h1 class="text-3xl font-bold mb-4">Tujuan Menabung</h1>
+      <div class="flex flex-col md:flex-row items-center justify-center p-8 max-w-7xl mx-auto" style="margin-top: 20vh">
+        <div class="flex-1 md:mr-8 blockAnimLR">
+          <h1 class="text-3xl font-bold mb-4">Tentang Menabung</h1>
           <p class="text-lg mb-4">
             Menabung adalah langkah penting dalam mengelola keuangan. Dengan menabung, kita dapat
             mempersiapkan masa depan yang lebih baik, baik untuk kebutuhan darurat maupun untuk
@@ -72,8 +59,8 @@ onMounted(() => {
           </p>
         </div>
 
-        <!-- Gambar kedua -->
-        <div class="flex-1 mb-6 md:mb-0">
+        <!-- Gambar kedua tanpa animasi -->
+        <div class="flex-1 mb-6 md:mb-0 blockAnimRL">
           <img :src="gambarDua" alt="Menabung" class="rounded-lg shadow-lg w-full h-auto" />
         </div>
       </div>
@@ -83,46 +70,51 @@ onMounted(() => {
   </div>
 </template>
 
-<style>
-@keyframes sliding {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(4px);
-  }
-}
-
-@keyframes opacity {
+<style scoped>
+@keyframes opacityRL {
   from {
     opacity: 0;
+    transform: translateX(100px);
   }
-  to {
-    opacity: 1;
-  }
-}
 
-@keyframes appear {
-  from {
-    opacity: 0;
-    transform: translateX(-150px);
-  }
   to {
     opacity: 1;
     transform: translateX(0px);
   }
 }
 
-.slide {
-  animation: sliding infinite 1.5s ease-in-out;
+@keyframes opacityLR {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 }
 
-.autoAnim {
-  animation: opacity 0.3s linear;
+@keyframes scale {
+  from {
+    opacity: 0;
+    transform: scale(0%);
+  }
+  to {
+    opacity: 1;
+    transform: scale(100%);
+  }
 }
 
-.blockAnim {
-  animation: appear 1.5s linear;
+.animS {
+  animation: scale 0.3s ease-in-out;
+}
+
+.animLR {
+  animation: opacityLR 0.3s ease-in-out;
+}
+
+.animRL {
+  animation: opacityRL 0.3s ease-in-out;
 }
 </style>
