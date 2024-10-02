@@ -34,7 +34,7 @@ const weeks = ref([
   { label: '2 Minggu', days: 2 },
   { label: '3 Minggu', days: 3 },
   { label: '4 Minggu', days: 4 },
-  { label: '5 Minggu' , days: 5 },
+  { label: '5 Minggu', days: 5 },
   { label: '6 Minggu', days: 6 },
   { label: '7 Minggu', days: 7 },
   { label: '8 Minggu', days: 8 }
@@ -49,7 +49,7 @@ const months = ref([
   { label: '6 Bulan', days: 6 },
   { label: '7 Bulan', days: 7 },
   { label: '8 Bulan', days: 8 }
-]) 
+])
 
 const selectedAmount = ref(amounts.value[0])
 const selectedPeriod = ref(periods.value[0])
@@ -224,7 +224,6 @@ const showSavingsForm = () => {
           <!-- next /weeks -->
           <div class="grid grid-cols-1 gap-4 md:grid-cols-3 mb-6">
             <div class="col-span-1">
-              
               <select
                 id="amount"
                 v-model="selectedNominal"
@@ -238,10 +237,9 @@ const showSavingsForm = () => {
 
             <!-- Dropdown for Periode weeks -->
             <div class="col-span-1">
-              
               <select
                 id="period"
-                v-model= "selectedWeek"
+                v-model="selectedWeek"
                 class="block w-full mt-1 p-2 border border-gray-300 bg-white rounded-md shadow-sm"
               >
                 <option v-for="week in weeks" :key="week.label" :value="week">
@@ -259,7 +257,6 @@ const showSavingsForm = () => {
           <!-- next /month -->
           <div class="grid grid-cols-1 gap-4 md:grid-cols-3 mb-6">
             <div class="col-span-1">
-              
               <select
                 id="uang"
                 v-model="selectedUang"
@@ -273,10 +270,9 @@ const showSavingsForm = () => {
 
             <!-- Dropdown for Periode month -->
             <div class="col-span-1">
-              
               <select
                 id="period"
-                v-model= "selectedMonth"
+                v-model="selectedMonth"
                 class="block w-full mt-1 p-2 border border-gray-300 bg-white rounded-md shadow-sm"
               >
                 <option v-for="month in months" :key="month.label" :value="month">
@@ -290,8 +286,6 @@ const showSavingsForm = () => {
               <p class="text-lg font-semibold">Total: Rp. {{ totalMonthDuit.toLocaleString() }}</p>
             </div>
           </div>
-
-
         </div>
       </div>
       <FooterComponent />
