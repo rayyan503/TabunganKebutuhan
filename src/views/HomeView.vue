@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import NavbarComponent from '../components/NavbarComponent.vue'
 import CarouselComponent from '../components/CarouselComponent.vue'
+import FooterComponent from '../components/FooterComponent.vue'
 </script>
 
 <template>
   <div class="viewAnim">
 
+    <NavbarComponent />
     <div class="autoAnim">
-      <NavbarComponent />
-
       <CarouselComponent />
     </div>
 
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center lg:pt-32">
-      <div class="blockAnim">
+      <div class="blockAnimRL">
         <p class="mx-auto max-w-2xl text-lg tracking-tight text-slate-700 sm:mt-6">Tabungan
           <span class="border-b border-dotted border-slate-300">Masyarakat</span>
         </p>
@@ -34,7 +34,7 @@ import CarouselComponent from '../components/CarouselComponent.vue'
         </h1>
       </div>
 
-      <div class="blockAnim">
+      <div class="blockAnimLR">
         <p class="mx-auto mt-9 max-w-2xl text-lg tracking-tight text-slate-700 sm:mt-6">
           <span class="inline-block">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem,
             cupiditate.</span>
@@ -56,13 +56,13 @@ import CarouselComponent from '../components/CarouselComponent.vue'
         <!-- Responsive Grid Layout -->
         <div class="flex flex-col justify-center items-center gap-5 lg:flex-row lg:h-auto text-wrap">
           <!-- Bagian 1: Gambar -->
-          <div class="basis-1/2 blockAnim">
+          <div class="basis-1/2 blockAnimRL">
             <img src="../assets/transfer.png"
               class="slide duration-500 hover:scale-105 hover:shadow-xl max-w-full h-auto" alt="About Image">
           </div>
 
           <!-- Bagian 2: About Me -->
-          <div class="basis-1/2 blockAnim">
+          <div class="basis-1/2 blockAnimLR">
             <h1 class="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl">
               About
               Me</h1>
@@ -82,6 +82,9 @@ import CarouselComponent from '../components/CarouselComponent.vue'
 
   </div>
 
+  <!-- Tampilan Footer -->
+  <FooterComponent />
+
 </template>
 
 <style>
@@ -99,20 +102,22 @@ import CarouselComponent from '../components/CarouselComponent.vue'
   }
 }
 
-@keyframes opacity {
+@keyframes appearLR {
   from {
     opacity: 0;
+    transform: translateX(-150px);
   }
 
   to {
     opacity: 1;
+    transform: translateX(0px);
   }
 }
 
-@keyframes appear {
+@keyframes appearRL {
   from {
     opacity: 0;
-    transform: translateX(-150px);
+    transform: translateX(150px);
   }
 
   to {
@@ -125,12 +130,14 @@ import CarouselComponent from '../components/CarouselComponent.vue'
   animation: sliding infinite 1.5s ease-in-out;
 }
 
-.autoAnim {
-  animation: opacity 0.3s linear;
+.blockAnimLR {
+  animation: appearLR linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
 }
 
-.blockAnim {
-  animation: appear linear;
+.blockAnimRL {
+  animation: appearRL linear;
   animation-timeline: view();
   animation-range: entry 0% cover 40%;
 }

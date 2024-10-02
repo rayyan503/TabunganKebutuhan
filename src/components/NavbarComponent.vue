@@ -13,7 +13,7 @@ const route = useRoute()
 </script>
 
 <template>
-  <header class="bg-blue-500 p-4">
+  <header class="bg-blue-500 p-4 autoAnim">
     <div class="container mx-auto flex justify-between items-center">
       <!-- Logo Section -->
       <div class="text-white text-lg font-semibold">
@@ -132,3 +132,19 @@ const route = useRoute()
 
   <RouterView />
 </template>
+
+<style>
+@keyframes opacity {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.autoAnim {
+  animation: opacity 0.3s ease-in-out;
+}
+</style>

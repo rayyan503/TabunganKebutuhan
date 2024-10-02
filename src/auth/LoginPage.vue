@@ -10,7 +10,7 @@ const toggleShowPassword = () => {
 </script>
 
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-green-200">
+  <div class="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-400 to-teal-500">
     <div class="bg-white shadow-md rounded-lg flex flex-col md:flex-row w-full max-w-4xl">
       <!-- Left side (hidden on mobile) -->
       <div

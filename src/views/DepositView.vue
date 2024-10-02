@@ -48,8 +48,8 @@ const showSavingsForm = () => {
 
         <label for="purpose" class="block text-sm font-medium">Tujuan Menabung</label>
         <input type="text" id="purpose" class="swal2-input" placeholder="Tujuan Menabung" />
-
-         <label for="amount" class="block text-sm font-medium">Nominal</label>
+        
+        <label for="amount" class="block text-sm font-medium">Nominal</label>
         <input type="number" id="amount" class="swal2-input" placeholder="Masukkan nominal" />
 
         <label for="period" class="block text-sm font-medium">Lama Menabung (hari)</label>
@@ -99,11 +99,11 @@ const showSavingsForm = () => {
     <div v-else>
       <NavbarComponent />
 
-      <div class="bg-green-200 min-h-96 flex justify-center items-center text-3xl font-bold">
+      <div class="bg-green-200 h-screen flex justify-center items-center text-3xl font-bold autoAnim">
         Banner Partai
       </div>
 
-      <div class="bg-white py-16 px-4 sm:px-6 lg:px-8 text-center mt-32">
+      <div class="bg-white py-16 px-4 sm:px-6 lg:px-8 text-center mt-32 blockAnimLR">
         <h2 class="text-3xl font-bold mb-4">Mari Menabung</h2>
         <p class="text-gray-600 max-w-2xl mx-auto mb-8">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
@@ -111,18 +111,18 @@ const showSavingsForm = () => {
         </p>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div class="lg:col-span-1">
+          <div class="lg:col-span-1 animO blockAnimLR">
             <div class="aspect-w-16 aspect-h-9">
               <img :src="fotoAlam01" class="w-full h-full object-cover rounded-lg shadow-md" />
             </div>
           </div>
 
           <div class="lg:col-span-1 grid grid-rows-2 gap-6">
-            <div class="h-64 bg-gray-400">
+            <div class="h-64 bg-gray-400 blockAnimRL">
               <img :src="fotoAlam02" class="w-full h-full object-cover rounded-lg shadow-md" />
             </div>
 
-            <div class="h-64 bg-gray-400">
+            <div class="h-64 bg-gray-400 blockAnimRL">
               <img :src="fotoAlam03" class="w-full h-full object-cover rounded-lg shadow-md" />
             </div>
           </div>
@@ -133,11 +133,11 @@ const showSavingsForm = () => {
         <div
           class="flex flex-col md:flex-row items-center justify-center p-8 max-w-7xl mx-auto mt-10"
         >
-          <div class="flex-1 mb-6 md:mb-0">
+          <div class="flex-1 mb-6 md:mb-0 blockAnimLR">
             <img :src="fotoAlam04" class="rounded-lg shadow-lg w-full h-auto animate-bounce-slow" />
           </div>
 
-          <div class="flex-1 md:ml-8">
+          <div class="flex-1 md:ml-8 blockAnimLR">
             <h2 class="text-2xl font-bold mb-4">Mulai Menabung</h2>
             <p class="text-lg mb-4">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor

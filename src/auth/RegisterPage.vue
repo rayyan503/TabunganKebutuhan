@@ -1,7 +1,7 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-green-200">
+  <div class="min-h-screen flex items-center justify-center bg-gradient-to-r from-cyan-500 to-blue-500">
     <div class="bg-white shadow-md rounded-lg flex flex-col md:flex-row w-full max-w-4xl">
-      <!-- Left side (image and branding) -->
+      <!-- Left side (form) -->
       <div
         class="hidden md:flex w-full md:w-1/2 bg-green-500 text-white p-8 rounded-t-lg md:rounded-t-none md:rounded-l-lg flex-col items-center justify-center"
         :style="{
@@ -15,7 +15,7 @@
         <p className="text-xl mb-2">Kehidupan dan keluarga anda</p>
       </div>
 
-      <!-- Right side (form) -->
+      <!-- Right side (image and branding) -->
       <div
         class="w-full md:w-1/2 p-8 rounded-b-lg md:rounded-b-none md:rounded-r-lg flex flex-col justify-center relative"
       >
