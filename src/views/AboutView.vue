@@ -64,6 +64,7 @@ onMounted(() => {
           <img :src="gambarDua" alt="Menabung" class="rounded-lg shadow-lg w-full h-auto" />
         </div>
       </div>
+
       <FooterComponent />
     </div>
   </div>
