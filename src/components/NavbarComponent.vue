@@ -20,7 +20,7 @@ const route = useRoute()
         <div class="text-white text-lg font-semibold">
           <RouterLink to="/">Menabung Kebutuhan</RouterLink>
         </div>
-  
+
         <!-- Hamburger menu for mobile view -->
         <div class="lg:hidden">
           <button @click="toggleMenu" class="text-white focus:outline-none">
@@ -40,7 +40,7 @@ const route = useRoute()
             </svg>
           </button>
         </div>
-  
+
         <!-- Desktop Navigation Menu -->
         <nav class="hidden lg:flex space-x-4">
           <RouterLink
@@ -70,7 +70,16 @@ const route = useRoute()
           >
             Menabung
           </RouterLink>
-  
+          <RouterLink
+            to="/aktivitas"
+            :class="[
+              'text-white hover:text-blue-300 px-4 py-2',
+              route.path === '/aktivitas' ? 'border-b-2 border-gray-300' : ''
+            ]"
+          >
+            Aktivitas
+          </RouterLink>
+
           <!-- Login and Register Buttons for desktop view -->
           <RouterLink
             to="/login"
@@ -86,7 +95,7 @@ const route = useRoute()
           </RouterLink>
         </nav>
       </div>
-  
+
       <!-- Mobile Dropdown Menu -->
       <nav v-if="isMenuOpen" class="lg:hidden mt-2 space-y-2 p-2 bg-blue-500 rounded-md">
         <RouterLink
@@ -115,6 +124,15 @@ const route = useRoute()
           ]"
         >
           Deposit
+        </RouterLink>
+        <RouterLink
+          to="/aktivitas"
+          :class="[
+            'block text-white hover:text-blue-300',
+            route.path === '/aktivitas' ? 'border-b-2 border-gray-300' : ''
+          ]"
+        >
+          Aktivitas
         </RouterLink>
         <RouterLink
           to="/login"
