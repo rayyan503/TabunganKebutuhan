@@ -4,6 +4,7 @@ import NavbarComponent from '../components/NavbarComponent.vue'
 import FooterComponent from '@/components/FooterComponent.vue'
 import gambarDua from '../assets/celengan01.png'
 import Swal from 'sweetalert2'
+import SliderComponent from '../components/SliderComponent.vue'
 
 const months = [
   'Januari',
@@ -163,6 +164,8 @@ onMounted(() => {
           <img :src="gambarDua" alt="Menabung" class="rounded-lg shadow-lg w-full h-auto" />
         </div>
       </div>
+
+      <SliderComponent />
 
       <FooterComponent />
     </div>
