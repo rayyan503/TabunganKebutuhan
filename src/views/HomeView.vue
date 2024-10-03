@@ -2,6 +2,7 @@
 import NavbarComponent from '../components/NavbarComponent.vue'
 import CarouselComponent from '../components/CarouselComponent.vue'
 import FooterComponent from '../components/FooterComponent.vue'
+import SliderComponent from '../components/SliderComponent.vue'
 import { onMounted, ref } from 'vue'
 
 const isLoading = ref(true)
@@ -98,6 +99,8 @@ onMounted(() => {
       </div>
       </div>
       </div>
+
+      <SliderComponent />
 
       <!-- Tampilan Footer -->
       <FooterComponent />
