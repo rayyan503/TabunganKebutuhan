@@ -8,6 +8,7 @@ import setor from '../assets/setorUang.jpg'
 import { computed, onMounted, ref } from 'vue'
 import FooterComponent from '@/components/FooterComponent.vue'
 import Swal from 'sweetalert2'
+import ContactView from './ContactView.vue'
 
 const isLoading = ref(true)
 
@@ -83,8 +84,8 @@ const showSavingsForm = () => {
         <label for="amount" class="block text-sm font-medium">Nominal</label>
         <input type="number" id="amount" class="swal2-input" placeholder="Masukkan nominal" />
 
-        <label for="period" class="block text-sm font-medium">Lama Menabung (hari)</label>
-        <input type="number" id="period" class="swal2-input" placeholder="Masukkan jumlah hari" />
+        <label for="period" class="block text-sm font-medium">Lama Menabung (hari/minggu/bulan)</label>
+        <input type="text" id="period" class="swal2-input" placeholder="Masukkan jumlah hari" />
       </div>
     `,
     showCancelButton: true,
@@ -296,6 +297,7 @@ const showSavingsForm = () => {
           </div>
         </div>
       </div>
+      <ContactView />
       <FooterComponent />
     </div>
   </div>

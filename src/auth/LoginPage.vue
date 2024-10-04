@@ -1,8 +1,32 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import alamSatu from '../assets/loginPT0.jpg'
+import alamSatu from '../assets/alam1.webp'
+import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toast-notification'
+import { useStore } from 'vuex'
 
-// Show/Hide password toggle
+const email = ref('')
+const password = ref('')
+
+const store = useStore()
+const router = useRouter()
+const toast = useToast()
+
+const handleLogin = async () => {
+  try {
+    const userData = {
+      email: email.value,
+      password: password.value
+    }
+    const response = await store.dispatch('login', userData)
+
+    toast.success('Login berhasil!', response)
+    router.push('/')
+  } catch (error) {
+    toast.error('Login gagal!')
+  }
+}
+
 const showPassword = ref(false)
 const toggleShowPassword = () => {
   showPassword.value = !showPassword.value
@@ -36,18 +60,16 @@ const toggleShowPassword = () => {
         <p class="text-gray-600 mb-6 text-center md:text-left">
           Selamat datang! Silahkan masuk dengan akun yang terdaftar.
         </p>
-        <form class="space-y-4 w-full">
-          <!-- Email/Phone Input -->
+        <form class="space-y-4 w-full" @submit.prevent="handleLogin">
+          <!-- Email -->
           <div>
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
-              Email/No.Handphone
-            </label>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="email"> Email </label>
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="email"
-              type="text"
+              type="email"
               placeholder="Contoh: johnwick@gmail.com"
-              name="emailOrNoTelp"
+              v-model="email"
             />
           </div>
 
@@ -61,7 +83,7 @@ const toggleShowPassword = () => {
               id="password"
               :type="showPassword ? 'text' : 'password'"
               placeholder="Masukkan password"
-              name="password"
+              v-model="password"
             />
             <div
               class="absolute inset-y-0 right-3 top-4 flex items-center text-lg text-gray-400 cursor-pointer"
