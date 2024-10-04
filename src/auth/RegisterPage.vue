@@ -1,9 +1,11 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-slate-100">
+  <div
+    class="min-h-screen flex items-center justify-center bg-gradient-to-r from-cyan-500 to-blue-500"
+  >
     <div class="bg-white shadow-md rounded-lg flex flex-col md:flex-row w-full max-w-4xl">
       <!-- Left side (form) -->
       <div
-        class="hidden md:flex w-full md:w-1/2 bg-green-500 font-black text-white p-8s rounded-t-lg md:rounded-t-none md:rounded-l-lg flex-col items-center justify-center"
+        class="hidden md:flex w-full md:w-1/2 bg-green-500 text-white p-8 rounded-t-lg md:rounded-t-none md:rounded-l-lg flex-col items-center justify-center"
         :style="{
           backgroundImage: `url(${alamDua})`,
           backgroundSize: 'cover',
@@ -11,10 +13,8 @@
           height: '100vh'
         }"
       >
-      <div class="backdrop-blur w-full text-center">
-          <h2 className="text-3xl font-black mb-4">Menabung Kebutuhan</h2>
-          <p className="text-xl mb-2">Kehidupan dan keluarga anda</p>
-        </div>
+        <h2 class="text-3xl font-bold mb-4">Daftar Akun</h2>
+        <p class="text-xl mb-2">Untuk Mengakses semua fitur yang ada di web ini.</p>
       </div>
 
       <!-- Right side (form) -->
@@ -27,6 +27,7 @@
         >
           <font-awesome-icon icon="arrow-left" size="lg" />
         </button>
+
         <h2 class="text-2xl font-bold ml-3 mt-3">Daftar</h2>
         <p class="text-gray-600 mb-4 ml-3">Silakan anda daftar terlebih dahulu.</p>
 
@@ -117,7 +118,7 @@
 import { ref } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-import alamDua from '../assets/alam2.jpg'
+import alamDua from '../assets/loginPT1.jpg'
 import { useToast } from 'vue-toast-notification'
 const toast = useToast()
 
