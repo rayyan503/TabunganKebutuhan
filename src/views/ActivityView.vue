@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue'
 import NavbarComponent from '../components/NavbarComponent.vue'
 import FooterComponent from '@/components/FooterComponent.vue'
-import gambarDua from '../assets/celengan01.png'
+import tujuan from '../assets/koinEmas.jpg'
 import Swal from 'sweetalert2'
 import SliderComponent from '../components/SliderComponent.vue'
 
@@ -161,7 +161,7 @@ onMounted(() => {
 
         <!-- Gambar kedua tanpa animasi -->
         <div class="flex-1 mb-6 md:mb-0 blockAnimRL">
-          <img :src="gambarDua" alt="Menabung" class="rounded-lg shadow-lg w-full h-auto" />
+          <img :src="tujuan" alt="Menabung" class="rounded-lg shadow-lg w-full h-auto" />
         </div>
       </div>
 

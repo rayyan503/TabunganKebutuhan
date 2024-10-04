@@ -3,6 +3,7 @@ import NavbarComponent from '../components/NavbarComponent.vue'
 import CarouselComponent from '../components/CarouselComponent.vue'
 import FooterComponent from '../components/FooterComponent.vue'
 import SliderComponent from '../components/SliderComponent.vue'
+import gambarSatu from '../assets/tabungUang.jpg'
 import { onMounted, ref } from 'vue'
 
 const isLoading = ref(true)
@@ -52,16 +53,14 @@ onMounted(() => {
 
         <div class="blockAnimLR">
           <p class="mx-auto mt-9 max-w-2xl text-lg tracking-tight text-slate-700 sm:mt-6">
-            <span class="inline-block">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem,
-              cupiditate.</span>
-            <span class="inline-block">Lorem ipsum dolor sit amet.</span>
+            <span class="inline-block">Mulai sekarang, mari wujudkan impianmu dengan menabung! Setiap langkah kecil membawa kita lebih dekat pada tujuan besar</span>
+            <span class="inline-block">Ayo menabung.</span>
           </p>
 
           <div class="mt-12 flex flex-col justify-center gap-y-5 sm:mt-10 sm:flex-row sm:gap-y-0 sm:gap-x-6">
-            <a class="group inline-flex items-center justify-center rounded-full py-2 px-4 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 bg-slate-900 text-white hover:bg-slate-700 hover:text-slate-100 active:bg-slate-800 active:text-slate-300 focus-visible:outline-slate-900 animate-fade-in-left duration-500 hover:scale-105 hover:shadow-xl"
-              href="#">
-              <span>Get Started</span>
-            </a>
+            <RouterLink to="/login" class="group inline-flex items-center justify-center rounded-full py-2 px-4 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 bg-slate-900 text-white hover:bg-slate-700 hover:text-slate-100 active:bg-slate-800 active:text-slate-300 focus-visible:outline-slate-900 animate-fade-in-left duration-500 hover:scale-105 hover:shadow-xl">
+              <span>Ayo Mulai</span>
+            </RouterLink>
           </div>
         </div>
 
@@ -72,21 +71,18 @@ onMounted(() => {
             <div class="flex flex-col justify-center items-center gap-5 lg:flex-row lg:h-auto text-wrap">
               <!-- Bagian 1: Gambar -->
               <div class="basis-1/2 blockAnimRL">
-                <img src="../assets/transfer.png"
-                  class="slide duration-500 hover:scale-105 hover:shadow-xl max-w-full h-auto" alt="About Image">
+                <img :src="gambarSatu" class="slide duration-500 hover:scale-105 hover:shadow-xl max-w-full h-auto"
+                  alt="About Image">
               </div>
 
               <!-- Bagian 2: About Me -->
               <div class="basis-1/2 blockAnimLR">
                 <h1
                   class="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl">
-                  About
-                  Me</h1>
+                  Tentang
+                  Kami</h1>
                 <p class="mx-auto mt-9 max-w-2xl text-lg tracking-tight text-slate-700 sm:mt-6">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Error alias ex molestiae vero a fugit
-                  incidunt
-                  corporis laudantium nostrum nobis illum id magni repellendus maxime, ipsam provident assumenda rem
-                  tempore.
+                  Menabung adalah langkah cerdas untuk merencanakan masa depan yang lebih baik. Dengan menabung, kita belajar mengelola keuangan, meraih tujuan jangka panjang, dan memiliki dana cadangan saat menghadapi keadaan darurat. Tak peduli besar atau kecil, setiap tabungan yang kita sisihkan hari ini akan bermanfaat di kemudian hari. Menabung bukan hanya soal mengurangi pengeluaran, tapi juga soal membangun kebiasaan baik yang akan membantu kita mencapai kemandirian finansial.
                 </p>
                 <div class="mt-12 flex flex-col justify-center gap-y-5 sm:mt-10 sm:flex-row sm:gap-y-0 sm:gap-x-6">
                   <router-link to="./about"
@@ -97,13 +93,13 @@ onMounted(() => {
           </div>
         </div>
       </div>
-      </div>
-      </div>
+    </div>
+  </div>
 
-      <SliderComponent />
+  <SliderComponent />
 
-      <!-- Tampilan Footer -->
-      <FooterComponent />
+  <!-- Tampilan Footer -->
+  <FooterComponent />
 </template>
 
 <style>
