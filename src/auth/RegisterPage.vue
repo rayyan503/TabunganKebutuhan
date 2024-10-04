@@ -117,7 +117,7 @@
 import { ref } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-import alamDua from '../assets/alam2.jpg'
+import alamDua from '../assets/loginPT1.jpg'
 import { useToast } from 'vue-toast-notification'
 const toast = useToast()
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import alamSatu from '../assets/alam1.webp'
+import alamSatu from '../assets/loginPT0.jpg'
 import { useRouter } from 'vue-router'
 import { useToast } from 'vue-toast-notification'
 import { useStore } from 'vuex'
