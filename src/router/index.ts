@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import store from '../store'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,6 +41,15 @@ const router = createRouter({
       component: () => import('../auth/RegisterPage.vue')
     }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  const isLoggedIn = store.state.user !== null
+  if (to.meta.requiresAuth && !isLoggedIn) {
+    next('/login')
+  } else {
+    next()
+  }
 })
 
 export default router
