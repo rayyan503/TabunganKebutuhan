@@ -1,5 +1,7 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gradient-to-r from-cyan-500 to-blue-500">
+  <div
+    class="min-h-screen flex items-center justify-center bg-gradient-to-r from-cyan-500 to-blue-500"
+  >
     <div class="bg-white shadow-md rounded-lg flex flex-col md:flex-row w-full max-w-4xl">
       <!-- Left side (form) -->
       <div
@@ -11,11 +13,11 @@
           height: '100vh'
         }"
       >
-        <h2 className="text-3xl font-bold mb-4">Menabung Kebutuhan</h2>
-        <p className="text-xl mb-2">Kehidupan dan keluarga anda</p>
+        <h2 class="text-3xl font-bold mb-4">Daftar Akun</h2>
+        <p class="text-xl mb-2">Untuk Mengakses semua fitur yang ada di web ini.</p>
       </div>
 
-      <!-- Right side (image and branding) -->
+      <!-- Right side (form) -->
       <div
         class="w-full md:w-1/2 p-8 rounded-b-lg md:rounded-b-none md:rounded-r-lg flex flex-col justify-center relative"
       >
@@ -32,12 +34,12 @@
         <form @submit.prevent="handleSubmit" class="px-4 space-y-4">
           <!-- Name Input -->
           <div>
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Nama</label>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Username</label>
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="name"
-              v-model="name"
-              placeholder="Masukkan nama"
+              id="username"
+              v-model="username"
+              placeholder="Masukkan Username"
             />
           </div>
 
@@ -50,20 +52,6 @@
               type="email"
               v-model="email"
               placeholder="Contoh: johnwick@gmail.com"
-            />
-          </div>
-
-          <!-- Phone Input -->
-          <div>
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="phone"
-              >No. Telepon</label
-            >
-            <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="phone"
-              type="number"
-              v-model="no_telp"
-              placeholder="Masukkan no. handphone"
             />
           </div>
 
@@ -128,17 +116,20 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import alamDua from '../assets/alam2.jpg'
+import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+import alamDua from '../assets/alam2.jpg'
+import { useToast } from 'vue-toast-notification'
+const toast = useToast()
 
-const name = ref('')
+const username = ref('')
 const email = ref('')
-const no_telp = ref('')
 const password = ref('')
 const confirmPassword = ref('')
 const showPassword = ref(false)
 const showConfirmPassword = ref(false)
 
+const store = useStore()
 const router = useRouter()
 
 const togglePasswordVisibility = () => {
@@ -158,30 +149,35 @@ const validatePassword = (password: string) => {
   return passwordRegex.test(password)
 }
 
-const handleSubmit = (e: Event) => {
-  e.preventDefault()
-
-  if (!name.value || !email.value || !no_telp.value || !password.value || !confirmPassword.value) {
-    alert('Semua kolom harus diisi!')
+const handleSubmit = async () => {
+  if (!username.value || !email.value || !password.value || !confirmPassword.value) {
+    toast.warning('Semua kolom harus diisi!')
     return
   }
 
   if (password.value !== confirmPassword.value) {
-    alert('Password dan Konfirmasi Password tidak sama!')
+    toast.warning('Password dan Konfirmasi Password tidak sama!')
     return
   }
 
   if (!validatePassword(password.value)) {
-    alert('Password harus diawali dengan huruf kapital dan minimal 8 karakter!')
+    toast.warning('Password harus diawali dengan huruf kapital dan minimal 8 karakter!')
     return
   }
 
-  const data = {
-    name: name.value,
-    email: email.value,
-    no_telp: no_telp.value,
-    password: password.value
+  try {
+    const userData = {
+      username: username.value,
+      email: email.value,
+      password: password.value
+    }
+
+    const response = await store.dispatch('register', userData)
+    toast.success('Registrasi berhasil!', response)
+    router.push('/login')
+  } catch (error) {
+    toast.error('Registrasi gagal! ')
+    console.error('Error:', error)
   }
-  console.log(data)
 }
 </script>
