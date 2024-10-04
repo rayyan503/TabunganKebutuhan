@@ -34,13 +34,11 @@ const toggleShowPassword = () => {
 </script>
 
 <template>
-  <div
-    class="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-400 to-teal-500"
-  >
+  <div class="min-h-screen flex items-center justify-center bg-slate-100">
     <div class="bg-white shadow-md rounded-lg flex flex-col md:flex-row w-full max-w-4xl">
       <!-- Left side (hidden on mobile) -->
       <div
-        class="hidden md:flex w-full md:w-1/2 text-white bg-green-500 p-8s rounded-t-lg md:rounded-t-none md:rounded-l-lg flex-col items-center justify-center"
+        class="hidden md:flex w-full md:w-1/2 text-white font-black bg-green-500 p-8s rounded-t-lg md:rounded-t-none md:rounded-l-lg flex-col items-center justify-center"
         :style="{
           backgroundImage: `url(${alamSatu})`,
           backgroundSize: 'cover',
@@ -48,8 +46,10 @@ const toggleShowPassword = () => {
           height: '100vh'
         }"
       >
-        <h2 className="text-3xl font-bold mb-4">Menabung Kebutuhan</h2>
+      <div class="backdrop-blur w-full text-center">
+        <h2 className="text-3xl font-black mb-4 ">Menabung Kebutuhan</h2>
         <p className="text-xl mb-2">Kehidupan dan keluarga anda</p>
+      </div>
       </div>
 
       <!-- Right side (login form) -->

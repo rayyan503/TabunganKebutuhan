@@ -35,9 +35,9 @@
 </template>
 
 <script>
-import slide1 from '../assets/celengan.png';
-import slide2 from '../assets/celengan01.png';
-import slide3 from '../assets/transfer.png';
+import slide1 from '../assets/simpanUang01.jpg';
+import slide2 from '../assets/uangDompet.jpg';
+import slide3 from '../assets/hitungUang.jpg';
 
 export default {
   name: 'CarouselComponent',
@@ -48,12 +48,15 @@ export default {
       items: [
         {
           image: slide1,
+          title: 'simpan uang'
         },
         {
           image: slide2,
+          title: 'uang di dompet'
         },
         {
           image: slide3,
+          title: 'hitung uang'
         },
       ],
     };
@@ -61,7 +64,7 @@ export default {
   mounted() {
     this.startAutoSlide();
   },
-  beforeDestroy() {
+  beforeUnmount() {
     clearInterval(this.autoSlideInterval);
   },
   methods: {

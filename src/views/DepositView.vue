@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import NavbarComponent from '../components/NavbarComponent.vue'
-import fotoAlam01 from '../assets/nabungfoto01.jpg'
-import fotoAlam02 from '../assets/nabungfoto02.jpg'
-import fotoAlam03 from '../assets/nabungfoto03.jpg'
-import fotoAlam04 from '../assets/finance01.png'
+import dolar from '../assets/banner.jpg'
+import koin01 from '../assets/koin01.jpg'
+import koin02 from '../assets/koin02.jpg'
+import koin03 from '../assets/koinLaptop.jpg'
+import setor from '../assets/setorUang.jpg'
 import { computed, onMounted, ref } from 'vue'
 import FooterComponent from '@/components/FooterComponent.vue'
 import Swal from 'sweetalert2'
@@ -130,31 +131,39 @@ const showSavingsForm = () => {
     <div v-else>
       <NavbarComponent />
 
-      <div class="bg-green-200 h-screen flex justify-center items-center text-3xl font-bold autoAnim">
-        Banner Partai
+      <div class="hero-image" 
+      :style="{
+        backgroundImage: `url(${dolar})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        height: '100vh'
+      }">
+        <div class="hero-text md:flex w-full md:w-1/2 text-white font-blackp-8s rounded-t-lg md:rounded-t-none md:rounded-l-lg flex-col items-center justify-center">
+          <h1 class="text-6xl font-black mb-4 ">Menabung Kebutuhan</h1>
+          <p class="text-2xl font-medium mb-2">Tabungan Terpercaya Masyarakat</p>
+        </div>
       </div>
 
       <div class="bg-white py-16 px-4 sm:px-6 lg:px-8 text-center mt-32 blockAnimLR">
         <h2 class="text-3xl font-bold mb-4">Mari Menabung</h2>
         <p class="text-gray-600 max-w-2xl mx-auto mb-8">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua.
+          Ayo menabung, sekecil apa pun yang kamu simpan hari ini akan menjadi besar di kemudian hari.
         </p>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div class="lg:col-span-1 animO blockAnimLR">
             <div class="aspect-w-16 aspect-h-9">
-              <img :src="fotoAlam01" class="w-full h-full object-cover rounded-lg shadow-md" />
+              <img :src="koin02" class="w-full h-full object-cover rounded-lg shadow-md" />
             </div>
           </div>
 
           <div class="lg:col-span-1 grid grid-rows-2 gap-6">
             <div class="h-64 bg-gray-400 blockAnimRL">
-              <img :src="fotoAlam02" class="w-full h-full object-cover rounded-lg shadow-md" />
+              <img :src="koin01" class="w-full h-full object-cover rounded-lg shadow-md" />
             </div>
 
             <div class="h-64 bg-gray-400 blockAnimRL">
-              <img :src="fotoAlam03" class="w-full h-full object-cover rounded-lg shadow-md" />
+              <img :src="koin03" class="w-full h-full object-cover rounded-lg shadow-md" />
             </div>
           </div>
         </div>
@@ -165,14 +174,13 @@ const showSavingsForm = () => {
           class="flex flex-col md:flex-row items-center justify-center p-8 max-w-7xl mx-auto mt-10"
         >
           <div class="flex-1 mb-6 md:mb-0 blockAnimLR">
-            <img :src="fotoAlam04" class="rounded-lg shadow-lg w-full h-auto animate-bounce-slow" />
+            <img :src="setor" class="rounded-lg shadow-lg w-full h-auto animate-bounce-slow" />
           </div>
 
           <div class="flex-1 md:ml-8 blockAnimLR">
             <h2 class="text-2xl font-bold mb-4">Mulai Menabung</h2>
             <p class="text-lg mb-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua.
+              Mulai sekarang, mari wujudkan impianmu dengan menabung! Setiap langkah kecil membawa kita lebih dekat pada tujuan besar.
             </p>
 
             <button
@@ -294,3 +302,27 @@ const showSavingsForm = () => {
     </div>
   </div>
 </template>
+
+<style scoped>
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.hero-image {
+  height: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-100%, -100%);
+}
+</style>

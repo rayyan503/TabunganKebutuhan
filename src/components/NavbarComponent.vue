@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
+import logoNav from '../assets/tabunganBersama.png'
 
 const isMenuOpen = ref(false)
 
@@ -14,11 +15,13 @@ const route = useRoute()
 
 <template>
   <div class="relative z-10">
-    <header class="bg-blue-500 p-4 autoAnim fixed top-0 left-0 right-0 shadow-md">
+    <header class="bg-teal-400 p-4 autoAnim fixed top-0 left-0 right-0 shadow-md">
       <div class="container mx-auto flex justify-between items-center">
         <!-- Logo Section -->
         <div class="text-white text-lg font-semibold">
-          <RouterLink to="/">Menabung Kebutuhan</RouterLink>
+          <RouterLink to="/">
+            <img :src="logoNav" class="w-60 h-auto pl-16 drop-shadow-2xl">
+          </RouterLink>
         </div>
 
         <!-- Hamburger menu for mobile view -->
@@ -46,7 +49,7 @@ const route = useRoute()
           <RouterLink
             to="/"
             :class="[
-              'text-white hover:text-blue-300 px-4 py-2',
+              'text-white hover:text-teal-200 px-4 py-2',
               route.path === '/' ? 'border-b-2 border-gray-300' : ''
             ]"
           >
@@ -55,7 +58,7 @@ const route = useRoute()
           <RouterLink
             to="/about"
             :class="[
-              'text-white hover:text-blue-300 px-4 py-2',
+              'text-white hover:text-teal-200 px-4 py-2',
               route.path === '/about' ? 'border-b-2 border-gray-300' : ''
             ]"
           >
@@ -64,7 +67,7 @@ const route = useRoute()
           <RouterLink
             to="/deposit"
             :class="[
-              'text-white hover:text-blue-300 px-4 py-2',
+              'text-white hover:text-teal-200 px-4 py-2',
               route.path === '/deposit' ? 'border-b-2 border-gray-300' : ''
             ]"
           >
@@ -73,7 +76,7 @@ const route = useRoute()
           <RouterLink
             to="/aktivitas"
             :class="[
-              'text-white hover:text-blue-300 px-4 py-2',
+              'text-white hover:text-teal-200 px-4 py-2',
               route.path === '/aktivitas' ? 'border-b-2 border-gray-300' : ''
             ]"
           >
@@ -97,11 +100,11 @@ const route = useRoute()
       </div>
 
       <!-- Mobile Dropdown Menu -->
-      <nav v-if="isMenuOpen" class="lg:hidden mt-2 space-y-2 p-2 bg-blue-500 rounded-md">
+      <nav v-if="isMenuOpen" class="lg:hidden mt-2 space-y-2 p-2 bg-teal-400 rounded-md">
         <RouterLink
           to="/"
           :class="[
-            'block text-white hover:text-blue-300',
+            'block text-white hover:text-teal-200',
             route.path === '/' ? 'border-b-2 border-gray-300' : ''
           ]"
         >
@@ -110,7 +113,7 @@ const route = useRoute()
         <RouterLink
           to="/about"
           :class="[
-            'block text-white hover:text-blue-300',
+            'block text-white hover:text-teal-200',
             route.path === '/about' ? 'border-b-2 border-gray-300' : ''
           ]"
         >
@@ -119,7 +122,7 @@ const route = useRoute()
         <RouterLink
           to="/deposit"
           :class="[
-            'block text-white hover:text-blue-300',
+            'block text-white hover:text-teal-200',
             route.path === '/deposit' ? 'border-b-2 border-gray-300' : ''
           ]"
         >
@@ -128,7 +131,7 @@ const route = useRoute()
         <RouterLink
           to="/aktivitas"
           :class="[
-            'block text-white hover:text-blue-300',
+            'block text-white hover:text-teal-200',
             route.path === '/aktivitas' ? 'border-b-2 border-gray-300' : ''
           ]"
         >

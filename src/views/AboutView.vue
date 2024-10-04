@@ -2,8 +2,8 @@
 import { ref, onMounted } from 'vue'
 import NavbarComponent from '../components/NavbarComponent.vue'
 import FooterComponent from '@/components/FooterComponent.vue'
-import gambarSatu from '../assets/celengan.png'
-import gambarDua from '../assets/celengan01.png'
+import gambarSatu from '../assets/tabungUang.jpg'
+import gambarDua from '../assets/setorUang.jpg'
 
 const isLoading = ref(true)
 
@@ -25,7 +25,7 @@ onMounted(() => {
     <div v-else>
       <NavbarComponent />
       <div
-        class="flex flex-col md:flex-row items-center justify-center p-8 max-w-7xl mx-auto mt-10"
+        class="mt-40 flex flex-col md:flex-row items-center justify-center p-8 max-w-7xl mx-auto"
       >
         <!-- Gambar pertama dengan animasi menggunakan Tailwind CSS -->
         <div class="flex-1 mb-6 md:mb-0 animRL">
@@ -39,14 +39,11 @@ onMounted(() => {
         <div class="flex-1 md:ml-8 animLR">
           <h1 class="text-3xl font-bold mb-4">Tentang Menabung</h1>
           <p class="text-lg mb-4">
-            Menabung adalah langkah penting dalam mengelola keuangan. Dengan menabung, kita dapat
-            mempersiapkan masa depan yang lebih baik, baik untuk kebutuhan darurat maupun untuk
-            tujuan jangka panjang seperti pendidikan, kesehatan, atau membeli rumah impian.
+            Selamat datang di Menabung Kebutuhan, platform yang dirancang khusus untuk membantu Anda memahami dan membangun kebiasaan menabung yang cerdas dan efektif. Kami percaya bahwa menabung bukan sekadar menyisihkan uang, tetapi tentang bagaimana kita merencanakan masa depan, mencapai tujuan keuangan, dan menciptakan kebebasan finansial yang kita inginkan.
           </p>
           <p class="text-lg">
-            Menjaga konsistensi dalam menabung akan membantu kita mencapai tujuan finansial dengan
-            lebih mudah. Mari mulai menabung sekarang dan jadikan kebiasaan ini sebagai bagian dari
-            gaya hidup!
+            Misi kami adalah untuk menginspirasi Anda agar lebih bijak dalam mengelola keuangan, mempersiapkan dana darurat, meraih impian jangka panjang, dan membangun masa depan yang lebih aman dan stabil. Bersama kami, menabung bukan lagi sekadar keinginan, tetapi langkah nyata menuju kebebasan finansial.
+Mari mulai perjalanan finansial Anda bersama kami, karena menabung untuk masa depan yang lebih baik dimulai dari hari ini!
           </p>
         </div>
       </div>
@@ -58,9 +55,7 @@ onMounted(() => {
         <div class="flex-1 md:mr-8 blockAnimLR">
           <h1 class="text-3xl font-bold mb-4">Tujuan Menabung</h1>
           <p class="text-lg mb-4">
-            Menabung adalah langkah penting dalam mengelola keuangan. Dengan menabung, kita dapat
-            mempersiapkan masa depan yang lebih baik, baik untuk kebutuhan darurat maupun untuk
-            tujuan jangka panjang seperti pendidikan, kesehatan, atau membeli rumah impian.
+            Di sini, kami menyediakan berbagai tips, panduan, dan strategi menabung yang dapat diterapkan oleh semua orang, mulai dari pelajar, pekerja, hingga para profesional yang ingin mengelola keuangan pribadi dengan lebih baik. Kami memahami bahwa setiap orang memiliki kebutuhan dan tujuan yang berbeda, itulah sebabnya kami hadir untuk memberikan solusi yang tepat dan mudah diterapkan.
           </p>
           <p class="text-lg">
             Aplikasi ini dibuat untuk membantu pengguna mengelola keuangan mereka dengan lebih baik
