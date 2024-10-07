@@ -1,30 +1,25 @@
 <template>
-  <div
-    class="min-h-screen flex items-center justify-center bg-gradient-to-r from-cyan-500 to-blue-500"
-  >
+  <div class="min-h-screen flex items-center justify-center bg-slate-100">
     <div class="bg-white shadow-md rounded-lg flex flex-col md:flex-row w-full max-w-4xl">
       <!-- Left side (form) -->
       <div
-        class="hidden md:flex w-full md:w-1/2 bg-green-500 text-white p-8 rounded-t-lg md:rounded-t-none md:rounded-l-lg flex-col items-center justify-center"
+        class="hidden md:flex w-full md:w-1/2 text-white font-black p-8s rounded-t-lg md:rounded-t-none md:rounded-l-lg flex-col items-center justify-center"
         :style="{
           backgroundImage: `url(${alamDua})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           height: '100vh'
-        }"
-      >
-        <h2 class="text-3xl font-bold mb-4">Daftar Akun</h2>
-        <p class="text-xl mb-2">Untuk Mengakses semua fitur yang ada di web ini.</p>
+        }">
+        <div class="backdrop-blur w-full text-center">
+          <h2 class="text-3xl font-black mb-4">Daftar Akun</h2>
+          <p class="text-xl mb-2">Untuk Mengakses semua fitur di web ini.</p>
+        </div>
       </div>
 
       <!-- Right side (form) -->
       <div
-        class="w-full md:w-1/2 p-8 rounded-b-lg md:rounded-b-none md:rounded-r-lg flex flex-col justify-center relative"
-      >
-        <button
-          class="md:hidden absolute top-4 left-4 text-blue-500 mb-10"
-          @click="navigateToLogin"
-        >
+        class="w-full md:w-1/2 p-8 rounded-b-lg md:rounded-b-none md:rounded-r-lg flex flex-col justify-center relative">
+        <button class="md:hidden absolute top-4 left-4 text-blue-500 mb-10" @click="navigateToLogin">
           <font-awesome-icon icon="arrow-left" size="lg" />
         </button>
 
@@ -37,10 +32,7 @@
             <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Username</label>
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="username"
-              v-model="username"
-              placeholder="Masukkan Username"
-            />
+              id="username" v-model="username" placeholder="Masukkan Username" />
           </div>
 
           <!-- Email Input -->
@@ -48,58 +40,38 @@
             <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="email"
-              type="email"
-              v-model="email"
-              placeholder="Contoh: johnwick@gmail.com"
-            />
+              id="email" type="email" v-model="email" placeholder="Contoh: johnwick@gmail.com" />
           </div>
 
           <!-- Password Input with Show/Hide -->
           <div class="relative">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="password"
-              >Password</label
-            >
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="password"
-              :type="showPassword ? 'text' : 'password'"
-              v-model="password"
-              placeholder="Masukkan password"
-            />
-            <div
-              class="absolute inset-y-0 right-3 top-4 flex items-center text-lg mt-3 text-gray-400 cursor-pointer"
-              @click="togglePasswordVisibility"
-            >
+              id="password" :type="showPassword ? 'text' : 'password'" v-model="password"
+              placeholder="Masukkan password" />
+            <div class="absolute inset-y-0 right-3 top-4 flex items-center text-lg mt-3 text-gray-400 cursor-pointer"
+              @click="togglePasswordVisibility">
               <font-awesome-icon :icon="showPassword ? 'eye' : 'eye-slash'" />
             </div>
           </div>
 
           <!-- Confirm Password Input with Show/Hide -->
           <div class="relative">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="confirm-password"
-              >Konfirmasi Password</label
-            >
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="confirm-password">Konfirmasi Password</label>
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="confirm-password"
-              :type="showConfirmPassword ? 'text' : 'password'"
-              v-model="confirmPassword"
-              placeholder="Masukkan kembali password"
-            />
-            <div
-              class="absolute inset-y-0 right-3 top-4 flex items-center text-lg mt-3 text-gray-400 cursor-pointer"
-              @click="toggleConfirmPasswordVisibility"
-            >
+              id="confirm-password" :type="showConfirmPassword ? 'text' : 'password'" v-model="confirmPassword"
+              placeholder="Masukkan kembali password" />
+            <div class="absolute inset-y-0 right-3 top-4 flex items-center text-lg mt-3 text-gray-400 cursor-pointer"
+              @click="toggleConfirmPasswordVisibility">
               <font-awesome-icon :icon="showConfirmPassword ? 'eye' : 'eye-slash'" />
             </div>
           </div>
 
           <div class="flex items-center justify-between mb-6">
-            <button
-              class="bg-blue-400 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-lg w-full"
-              type="submit"
-            >
+            <button class="bg-blue-400 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-lg w-full"
+              type="submit">
               Daftar
             </button>
           </div>
