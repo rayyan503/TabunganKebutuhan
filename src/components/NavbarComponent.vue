@@ -1,16 +1,27 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
+import { useStore } from 'vuex'
 import logoNav from '../assets/tabunganBersama.png'
+import { useToast } from 'vue-toast-notification'
+import router from '@/router'
 
+const toast = useToast()
 const isMenuOpen = ref(false)
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
 }
-
-// Mendapatkan rute aktif
 const route = useRoute()
+const store = useStore()
+
+const isLoggedIn = computed(() => store.state.user !== null)
+const handleLogout = () => {
+  store.commit('LOGOUT_SUCCESS')
+  store.state.user = null
+  toast.success('Logout berhasil!')
+  router.push('/')
+}
 </script>
 
 <template>
@@ -20,7 +31,7 @@ const route = useRoute()
         <!-- Logo Section -->
         <div class="text-white text-lg font-semibold">
           <RouterLink to="/">
-            <img :src="logoNav" class="w-60 h-auto pl-16 drop-shadow-2xl">
+            <img :src="logoNav" class="w-60 h-auto pl-16 drop-shadow-2xl" />
           </RouterLink>
         </div>
 
@@ -73,7 +84,10 @@ const route = useRoute()
           >
             Menabung
           </RouterLink>
+
+          <!-- Hanya tampilkan jika sudah login -->
           <RouterLink
+            v-if="isLoggedIn"
             to="/aktivitas"
             :class="[
               'text-white hover:text-teal-200 px-4 py-2',
@@ -83,19 +97,29 @@ const route = useRoute()
             Aktivitas
           </RouterLink>
 
-          <!-- Login and Register Buttons for desktop view -->
-          <RouterLink
-            to="/login"
-            class="text-white text-center bg-yellow-500 hover:bg-yellow-400 px-4 py-2 rounded-md"
-          >
-            Masuk
-          </RouterLink>
-          <RouterLink
-            to="/daftar"
-            class="text-white text-center bg-red-600 hover:bg-red-500 px-4 py-2 rounded-md"
-          >
-            Daftar
-          </RouterLink>
+          <!-- Tombol Login, Daftar, Logout -->
+          <template v-if="isLoggedIn">
+            <button
+              @click="handleLogout"
+              class="text-white text-center bg-red-600 hover:bg-red-500 px-4 py-2 rounded-md"
+            >
+              Logout
+            </button>
+          </template>
+          <template v-else>
+            <RouterLink
+              to="/login"
+              class="text-white text-center bg-yellow-500 hover:bg-yellow-400 px-4 py-2 rounded-md"
+            >
+              Masuk
+            </RouterLink>
+            <RouterLink
+              to="/daftar"
+              class="text-white text-center bg-red-600 hover:bg-red-500 px-4 py-2 rounded-md"
+            >
+              Daftar
+            </RouterLink>
+          </template>
         </nav>
       </div>
 
@@ -129,6 +153,7 @@ const route = useRoute()
           Deposit
         </RouterLink>
         <RouterLink
+          v-if="isLoggedIn"
           to="/aktivitas"
           :class="[
             'block text-white hover:text-teal-200',
@@ -137,37 +162,32 @@ const route = useRoute()
         >
           Aktivitas
         </RouterLink>
-        <RouterLink
-          to="/login"
-          class="block text-white bg-yellow-500 hover:bg-yellow-400 px-4 py-2 rounded-md"
-        >
-          Masuk
-        </RouterLink>
-        <RouterLink
-          to="/daftar"
-          class="block text-white bg-red-600 hover:bg-red-500 px-4 py-2 rounded-md"
-        >
-          Daftar
-        </RouterLink>
+
+        <template v-if="isLoggedIn">
+          <button
+            @click="handleLogout"
+            class="block text-white bg-red-600 hover:bg-red-500 px-4 py-2 rounded-md"
+          >
+            Logout
+          </button>
+        </template>
+        <template v-else>
+          <RouterLink
+            to="/login"
+            class="block text-white bg-yellow-500 hover:bg-yellow-400 px-4 py-2 rounded-md"
+          >
+            Masuk
+          </RouterLink>
+          <RouterLink
+            to="/daftar"
+            class="block text-white bg-red-600 hover:bg-red-500 px-4 py-2 rounded-md"
+          >
+            Daftar
+          </RouterLink>
+        </template>
       </nav>
     </header>
   </div>
 
   <RouterView />
 </template>
-
-<style>
-@keyframes opacity {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-.autoAnim {
-  animation: opacity 0.3s ease-in-out;
-}
-</style>
