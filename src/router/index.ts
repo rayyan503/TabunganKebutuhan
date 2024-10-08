@@ -8,6 +8,7 @@ import TotalWithdrawals from '@/views/TotalWithdrawals.vue'
 import TotalBalance from '@/views/TotalBalance.vue'
 
 import store from '../store'
+import Laporan from '@/views/Laporan.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -76,6 +77,11 @@ const router = createRouter({
       path: '/total-balance',
       name: 'Total-Balance',
       component: TotalBalance
+    },
+    {
+      path: '/laporan',
+      name: 'Laporan',
+      component: Laporan
     }
 
   ]
