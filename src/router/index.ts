@@ -1,5 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import Dashboard from '../views/Dashboard.vue'
+import UserList from '../views/UserList.vue'
+import ActiveUsers from '@/views/ActiveUsers.vue'
+import TotalDeposit from '@/views/TotalDeposit.vue'
+import TotalWithdrawals from '@/views/TotalWithdrawals.vue'
+import TotalBalance from '@/views/TotalBalance.vue'
+
 import store from '../store'
 
 const router = createRouter({
@@ -39,7 +46,38 @@ const router = createRouter({
       path: '/daftar',
       name: 'daftar',
       component: () => import('../auth/RegisterPage.vue')
+    },
+    {
+      path: '/dashboard',
+      name: 'Dashboard',
+      component: Dashboard,
+    },
+    {
+      path: '/users',
+      name: 'UserList',
+      component: UserList, // Tambahkan rute baru di sini
+    },
+    {
+      path: '/active-users',
+      name: 'ActiveUsers',
+      component: ActiveUsers
+    },
+    {
+      path: '/total-deposits',
+      name: 'TotalDeposit',
+      component: TotalDeposit
+    },
+    {
+      path: '/total-withdrawals',
+      name: 'TotalWithdraw',
+      component: TotalWithdrawals
+    },
+    {
+      path: '/total-balance',
+      name: 'Total-Balance',
+      component: TotalBalance
     }
+
   ]
 })
 
