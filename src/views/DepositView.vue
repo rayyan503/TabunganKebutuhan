@@ -325,4 +325,11 @@ body, html {
   left: 50%;
   transform: translate(-100%, -100%);
 }
+
+@media (max-width: 768px) {
+  .hero-text {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
 </style>

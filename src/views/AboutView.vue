@@ -49,7 +49,7 @@ Mari mulai perjalanan finansial Anda bersama kami, karena menabung untuk masa de
       </div>
 
       <div
-        class="flex flex-col md:flex-row items-center justify-center p-8 max-w-7xl mx-auto"
+        class="flex flex-col md:flex-row items-center gap-3 justify-center p-8 max-w-7xl mx-auto"
         style="margin-top: 20vh"
       >
         <div class="flex-1 md:mr-8 blockAnimLR">
@@ -66,7 +66,7 @@ Mari mulai perjalanan finansial Anda bersama kami, karena menabung untuk masa de
         </div>
 
         <!-- Gambar kedua tanpa animasi -->
-        <div class="flex-1 mb-6 md:mb-0 blockAnimRL">
+        <div class="flex-1 mb-6 blockAnimRL ">
           <img :src="gambarDua" alt="Menabung" class="rounded-lg shadow-lg w-full h-auto" />
         </div>
       </div>

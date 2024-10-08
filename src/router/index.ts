@@ -7,6 +7,8 @@ import TotalDeposit from '@/views/TotalDeposit.vue'
 import TotalWithdrawals from '@/views/TotalWithdrawals.vue'
 import TotalBalance from '@/views/TotalBalance.vue'
 
+import store from '../store'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -77,6 +79,15 @@ const router = createRouter({
     }
 
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  const isLoggedIn = store.state.user !== null
+  if (to.meta.requiresAuth && !isLoggedIn) {
+    next('/login')
+  } else {
+    next()
+  }
 })
 
 export default router

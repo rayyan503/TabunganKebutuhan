@@ -4,7 +4,7 @@
   <div class="overflow-hidden">
       <div class="flex transition-transform duration-500" :style="{ transform: 'translateX(-' + currentIndex * 100 + '%)'}">
         <div v-for="(item, index) in items" :key="index" class="min-w-full h-screen flex justify-center items-center">
-          <img :src="item.image" :alt="item.title" class="max-w-md h-auto object-cover duration-500 hover:scale-105 hover:shadow-xl">
+          <img :src="item.image" :alt="item.title" class="max-w-full h-auto object-cover duration-500 hover:scale-105 hover:shadow-xl">
         </div>
       </div>
     </div>

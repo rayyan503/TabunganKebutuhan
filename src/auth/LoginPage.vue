@@ -38,7 +38,7 @@ const toggleShowPassword = () => {
     <div class="bg-white shadow-md rounded-lg flex flex-col md:flex-row w-full max-w-4xl">
       <!-- Left side (hidden on mobile) -->
       <div
-        class="hidden md:flex w-full md:w-1/2 text-white font-black bg-green-500 p-8s rounded-t-lg md:rounded-t-none md:rounded-l-lg flex-col items-center justify-center"
+        class="hidden md:flex w-full md:w-1/2 text-white font-black p-8s rounded-t-lg md:rounded-t-none md:rounded-l-lg flex-col items-center justify-center"
         :style="{
           backgroundImage: `url(${alamSatu})`,
           backgroundSize: 'cover',
