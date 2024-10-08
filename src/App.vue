@@ -1,8 +1,7 @@
-<!-- src/App.vue -->
 <template>
   <div id="app" class="flex">
-    <!-- Menampilkan sidebar hanya pada halaman dashboard -->
-    <Sidebar v-if="isDashboardRoute" />
+    <!-- Menampilkan sidebar pada halaman dashboard dan active-users -->
+    <Sidebar v-if="isSidebarVisibleRoute" />
     <div class="flex-grow p-4">
       <RouterView />
     </div>
@@ -10,26 +9,32 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
-import Sidebar from './components/Sidebar.vue';
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import Sidebar from './components/Sidebar.vue'
 
 // Mengambil rute saat ini
-const route = useRoute();
+const route = useRoute()
 
-// Menggunakan computed untuk menentukan apakah rute saat ini adalah dashboard
-const isDashboardRoute = computed(() => {
-  return route.path === '/dashboard';
-});
+// Menggunakan computed untuk menentukan apakah sidebar harus ditampilkan
+const isSidebarVisibleRoute = computed(() => {
+  return (
+    route.path === '/dashboard' ||
+    route.path === '/active-users' ||
+    route.path === '/total-deposits' ||
+    route.path === '/total-withdrawals' ||
+    route.path === '/total-balance'
+  )
+})
 </script>
 
 <style>
 .flex {
-  display: flex; /* Menggunakan flexbox untuk layout */
+  display: flex;
 }
 
 .flex-grow {
-  flex-grow: 1; /* Konten utama mengambil sisa ruang */
-  padding: 16px; /* Memberikan padding pada konten utama */
+  flex-grow: 1;
+  padding: 16px;
 }
 </style>
