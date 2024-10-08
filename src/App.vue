@@ -23,7 +23,8 @@ const isSidebarVisibleRoute = computed(() => {
     route.path === '/active-users' ||
     route.path === '/total-deposits' ||
     route.path === '/total-withdrawals' ||
-    route.path === '/total-balance'
+    route.path === '/total-balance' ||
+    route.path === '/laporan'
   )
 })
 </script>
