@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-slate-100">
+  <div class="h-full flex items-center justify-center bg-slate-100">
     <div class="bg-white shadow-md rounded-lg flex flex-col md:flex-row w-full max-w-4xl">
       <!-- Left side (form) -->
       <div
@@ -8,7 +8,7 @@
           backgroundImage: `url(${alamDua})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          height: '100vh'
+          height: '95vh'
         }">
         <div class="backdrop-blur w-full text-center">
           <h2 class="text-3xl font-black mb-4">Daftar Akun</h2>
