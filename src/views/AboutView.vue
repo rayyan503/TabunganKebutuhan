@@ -16,7 +16,7 @@ onMounted(() => {
 
 <template>
   <div>
-    <div v-if="isLoading" class="flex justify-center items-center h-screen bg-gray-200">
+    <div v-if="isLoading" class="flex justify-center items-center h-screen">
       <div
         class="border-4 border-t-transparent border-blue-500 rounded-full w-16 h-16 animate-spin"
       ></div>
