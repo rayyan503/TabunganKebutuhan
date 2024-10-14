@@ -46,10 +46,10 @@ const toggleShowPassword = () => {
           height: '95vh'
         }"
       >
-      <div class="backdrop-blur w-full text-center">
-        <h2 className="text-3xl font-black mb-4 ">Menabung Kebutuhan</h2>
-        <p className="text-xl mb-2">Kehidupan dan keluarga anda</p>
-      </div>
+        <div class="backdrop-blur w-full text-center">
+          <h2 className="text-3xl font-black mb-4 ">Menabung Kebutuhan</h2>
+          <p className="text-xl mb-2">Kehidupan dan keluarga anda</p>
+        </div>
       </div>
 
       <!-- Right side (login form) -->
