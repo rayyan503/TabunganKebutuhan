@@ -34,7 +34,7 @@ const toggleShowPassword = () => {
 </script>
 
 <template>
-  <div class="h-full flex items-center justify-center bg-slate-100">
+  <div class="h-full flex items-center justify-center">
     <div class="bg-white shadow-md rounded-lg flex flex-col md:flex-row w-full max-w-4xl">
       <!-- Left side (hidden on mobile) -->
       <div
