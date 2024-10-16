@@ -9,6 +9,7 @@ import { computed, onMounted, ref } from 'vue'
 import FooterComponent from '@/components/FooterComponent.vue'
 import Swal from 'sweetalert2'
 import ContactView from './ContactView.vue'
+import axios from 'axios'
 
 const isLoading = ref(true)
 
@@ -79,13 +80,20 @@ const showSavingsForm = () => {
         <input type="number" id="nik" class="swal2-input" placeholder="NIK" />
 
         <label for="purpose" class="block text-sm font-medium">Tujuan Menabung</label>
-        <input type="text" id="purpose" class="swal2-input" placeholder="Tujuan Menabung" />
+        <input type="text" id="goals" class="swal2-input" placeholder="Tujuan Menabung" />
         
-        <label for="amount" class="block text-sm font-medium">Nominal</label>
-        <input type="number" id="amount" class="swal2-input" placeholder="Masukkan nominal" />
+        <label for="nominal" class="block text-sm font-medium">Nominal</label>
+        <input type="number" id="nominal"  class="swal2-input" placeholder="Masukkan nominal" />
 
-        <label for="period" class="block text-sm font-medium">Lama Menabung (hari/minggu/bulan)</label>
-        <input type="text" id="period" class="swal2-input" placeholder="Masukkan jumlah hari" />
+        <label for="longTime" class="block text-sm font-medium">Lama Menabung</label>
+         <input type="number" id="longTime" class="swal2-input w-full md:w-auto" placeholder="Masukkan jumlah" />
+        <div class="flex flex-col md:flex-row gap-4">
+          <select id="periodType" class="swal2-input w-full md:w-auto">
+            <option value="daily">Hari</option>
+            <option value="weekly">Minggu</option>
+            <option value="monthly">Bulan</option>
+          </select>
+        </div>
       </div>
     `,
     showCancelButton: true,
@@ -97,24 +105,61 @@ const showSavingsForm = () => {
       cancelButton: 'bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded'
     },
     preConfirm: () => {
-      const fullName = (document.getElementById('fullName') as HTMLInputElement).value
-      const address = (document.getElementById('address') as HTMLInputElement).value
-      const nik = (document.getElementById('nik') as HTMLInputElement).value
-      const purpose = (document.getElementById('purpose') as HTMLInputElement).value
-      const amount = (document.getElementById('amount') as HTMLSelectElement).value
-      const period = (document.getElementById('period') as HTMLSelectElement).value
+      const fullName = (document.getElementById('fullName') as HTMLInputElement).value.trim()
+      const address = (document.getElementById('address') as HTMLInputElement).value.trim()
+      const nik = (document.getElementById('nik') as HTMLInputElement).value.trim()
+      const purpose = (document.getElementById('goals') as HTMLInputElement).value.trim()
+      const nominal = parseFloat(
+        (document.getElementById('nominal') as HTMLInputElement).value.trim()
+      )
+      const periodType = (document.getElementById('periodType') as HTMLSelectElement).value.trim()
+      const longTime = parseInt(
+        (document.getElementById('longTime') as HTMLInputElement).value.trim()
+      )
 
-      if (!fullName || !address || !nik || !purpose || !amount || !period) {
-        Swal.showValidationMessage('Harap lengkapi semua kolom')
+      if (
+        !fullName ||
+        !address ||
+        !nik ||
+        !purpose ||
+        isNaN(nominal) ||
+        nominal <= 0 ||
+        !periodType ||
+        isNaN(longTime) ||
+        longTime <= 0
+      ) {
+        Swal.showValidationMessage('Harap lengkapi semua kolom dengan benar')
         return false
       }
 
-      return { fullName, address, nik, purpose, amount, period }
+      return { fullName, address, nik, purpose, nominal, periodType, longTime }
     }
-  }).then((result) => {
+  }).then(async (result) => {
     if (result.isConfirmed) {
-      console.log('Form Data:', result.value)
-      Swal.fire('Tersimpan!', 'Pendaftaran Anda Sedang Diproses', 'success')
+      const formData = {
+        nik: result.value.nik,
+        full_name: result.value.fullName,
+        address: result.value.address,
+        goals: result.value.purpose,
+        target: result.value.nominal,
+        unit: result.value.periodType,
+        due: result.value.longTime
+      }
+      try {
+        const response = await axios.post(
+          'https://rest-api-go-production-add4.up.railway.app/deposit/create',
+          formData,
+          {
+            headers: { 'Content-Type': 'application/json' }
+          }
+        )
+        console.log('API Response:', response.data)
+
+        Swal.fire('Tersimpan!', 'Pendaftaran Anda Sedang Diproses', 'success')
+      } catch (error) {
+        console.error('API Error:', error.response?.data || error)
+        Swal.fire('Gagal!', 'Terjadi kesalahan saat menyimpan data', 'error')
+      }
     }
   })
 }
@@ -131,15 +176,19 @@ const showSavingsForm = () => {
     <div v-else>
       <NavbarComponent />
 
-      <div class="hero-image" 
-      :style="{
-        backgroundImage: `url(${dolar})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        height: '100vh',
-      }">
-        <div class="hero-text md:flex w-full md:w-1/2 text-white font-blackp-8s rounded-t-lg md:rounded-t-none md:rounded-l-lg flex-col items-center justify-center">
-          <h1 class="text-6xl font-black mb-4 ">Menabung Kebutuhan</h1>
+      <div
+        class="hero-image"
+        :style="{
+          backgroundImage: `url(${dolar})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          height: '100vh'
+        }"
+      >
+        <div
+          class="hero-text md:flex w-full md:w-1/2 text-white font-blackp-8s rounded-t-lg md:rounded-t-none md:rounded-l-lg flex-col items-center justify-center"
+        >
+          <h1 class="text-6xl font-black mb-4">Menabung Kebutuhan</h1>
           <p class="text-2xl font-medium mb-2">Tabungan Terpercaya Masyarakat</p>
         </div>
       </div>
@@ -147,7 +196,8 @@ const showSavingsForm = () => {
       <div class="bg-white py-16 px-4 sm:px-6 lg:px-8 text-center mt-32 blockAnimLR">
         <h2 class="text-3xl font-bold mb-4">Mari Menabung</h2>
         <p class="text-gray-600 max-w-2xl mx-auto mb-8">
-          Ayo menabung, sekecil apa pun yang kamu simpan hari ini akan menjadi besar di kemudian hari.
+          Ayo menabung, sekecil apa pun yang kamu simpan hari ini akan menjadi besar di kemudian
+          hari.
         </p>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -180,7 +230,8 @@ const showSavingsForm = () => {
           <div class="flex-1 md:ml-8 blockAnimLR">
             <h2 class="text-2xl font-bold mb-4">Mulai Menabung</h2>
             <p class="text-lg mb-4">
-              Mulai sekarang, mari wujudkan impianmu dengan menabung! Setiap langkah kecil membawa kita lebih dekat pada tujuan besar.
+              Mulai sekarang, mari wujudkan impianmu dengan menabung! Setiap langkah kecil membawa
+              kita lebih dekat pada tujuan besar.
             </p>
 
             <button
@@ -304,7 +355,8 @@ const showSavingsForm = () => {
 </template>
 
 <style scoped>
-body, html {
+body,
+html {
   height: 100%;
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
