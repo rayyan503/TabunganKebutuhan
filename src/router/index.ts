@@ -51,12 +51,12 @@ const router = createRouter({
     {
       path: '/dashboard',
       name: 'Dashboard',
-      component: Dashboard,
+      component: Dashboard
     },
     {
       path: '/users',
       name: 'UserList',
-      component: UserList, // Tambahkan rute baru di sini
+      component: UserList
     },
     {
       path: '/active-users',
@@ -83,7 +83,6 @@ const router = createRouter({
       name: 'Laporan',
       component: Laporan
     }
-
   ]
 })
 
