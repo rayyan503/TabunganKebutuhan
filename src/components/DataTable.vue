@@ -1,29 +1,28 @@
-<!-- src/components/DataTable.vue -->
 <template>
   <div>
     <table class="min-w-full bg-white">
       <thead>
         <tr>
           <th class="py-2 px-4 border-b">NIK</th>
-          <th class="py-2 px-4 border-b">Nama</th>
-          <th class="py-2 px-4 border-b">Email</th>
-          <th class="py-2 px-4 border-b">Tanggal Daftar</th>
+          <th class="py-2 px-4 border-b">Nama Lengkap</th>
+          <th class="py-2 px-4 border-b">Alamat</th>
+          <th class="py-2 px-4 border-b">Tujuan</th>
+          <th class="py-2 px-4 border-b">Nominal</th>
+          <th class="py-2 px-4 border-b">Lama Menabung</th>
+          <th class="py-2 px-4 border-b">Periodik</th>
           <th class="py-2 px-4 border-b">Tanggal Menabung</th>
-          <th class="py-2 px-4 border-b">Jumlah Setoran</th>
-          <th class="py-2 px-4 border-b">Nama Petugas</th>
-          <th class="py-2 px-4 border-b">Saldo</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in items" :key="item.id">
-          <td class="py-2 px-4 border-b">{{ item.id }}</td>
-          <td class="py-2 px-4 border-b">{{ item.name }}</td>
-          <td class="py-2 px-4 border-b">{{ item.email }}</td>
-          <td class="py-2 px-4 border-b">{{ item.registeredAt }}</td>
-          <td class="py-2 px-4 border-b">{{ item.totalDeposits }}</td>
-          <td class="py-2 px-4 border-b">{{ item.totalWithdrawals }}</td>
-          <td class="py-2 px-4 border-b">{{ item.balance }}</td>
-          <td class="py-2 px-4 border-b">{{ item.status }}</td>
+        <tr v-for="item in items" :key="item.nik">
+          <td class="py-2 px-4 border-b">{{ item.nik }}</td>
+          <td class="py-2 px-4 border-b">{{ item.full_name }}</td>
+          <td class="py-2 px-4 border-b">{{ item.address }}</td>
+          <td class="py-2 px-4 border-b">{{ item.goals }}</td>
+          <td class="py-2 px-4 border-b">{{ item.target }}</td>
+          <td class="py-2 px-4 border-b">{{ item.due }}</td>
+          <td class="py-2 px-4 border-b">{{ item.unit }}</td>
+          <td class="py-2 px-4 border-b">{{ formatCreatedAt(item.created_at) }}</td>
         </tr>
       </tbody>
     </table>
@@ -31,6 +30,11 @@
 </template>
 
 <script>
+import dayjs from 'dayjs'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
+
+dayjs.extend(customParseFormat)
+
 export default {
   name: 'DataTable',
   props: {
@@ -38,10 +42,11 @@ export default {
       type: Array,
       required: true
     }
+  },
+  methods: {
+    formatCreatedAt(dateString) {
+      return dayjs(dateString).format('DD MMMM YYYY')
+    }
   }
 }
 </script>
-
-<style scoped>
-/* Tambahan gaya jika diperlukan */
-</style>

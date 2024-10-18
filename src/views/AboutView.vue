@@ -39,11 +39,17 @@ onMounted(() => {
         <div class="flex-1 md:ml-8 animLR">
           <h1 class="text-3xl font-bold mb-4">Tentang Menabung</h1>
           <p class="text-lg mb-4">
-            Selamat datang di Menabung Kebutuhan, platform yang dirancang khusus untuk membantu Anda memahami dan membangun kebiasaan menabung yang cerdas dan efektif. Kami percaya bahwa menabung bukan sekadar menyisihkan uang, tetapi tentang bagaimana kita merencanakan masa depan, mencapai tujuan keuangan, dan menciptakan kebebasan finansial yang kita inginkan.
+            Selamat datang di Menabung Kebutuhan, platform yang dirancang khusus untuk membantu Anda
+            memahami dan membangun kebiasaan menabung yang cerdas dan efektif. Kami percaya bahwa
+            menabung bukan sekadar menyisihkan uang, tetapi tentang bagaimana kita merencanakan masa
+            depan, mencapai tujuan keuangan, dan menciptakan kebebasan finansial yang kita inginkan.
           </p>
           <p class="text-lg">
-            Misi kami adalah untuk menginspirasi Anda agar lebih bijak dalam mengelola keuangan, mempersiapkan dana darurat, meraih impian jangka panjang, dan membangun masa depan yang lebih aman dan stabil. Bersama kami, menabung bukan lagi sekadar keinginan, tetapi langkah nyata menuju kebebasan finansial.
-Mari mulai perjalanan finansial Anda bersama kami, karena menabung untuk masa depan yang lebih baik dimulai dari hari ini!
+            Misi kami adalah untuk menginspirasi Anda agar lebih bijak dalam mengelola keuangan,
+            mempersiapkan dana darurat, meraih impian jangka panjang, dan membangun masa depan yang
+            lebih aman dan stabil. Bersama kami, menabung bukan lagi sekadar keinginan, tetapi
+            langkah nyata menuju kebebasan finansial. Mari mulai perjalanan finansial Anda bersama
+            kami, karena menabung untuk masa depan yang lebih baik dimulai dari hari ini!
           </p>
         </div>
       </div>
@@ -55,7 +61,11 @@ Mari mulai perjalanan finansial Anda bersama kami, karena menabung untuk masa de
         <div class="flex-1 md:mr-8 blockAnimLR">
           <h1 class="text-3xl font-bold mb-4">Tujuan Menabung</h1>
           <p class="text-lg mb-4">
-            Di sini, kami menyediakan berbagai tips, panduan, dan strategi menabung yang dapat diterapkan oleh semua orang, mulai dari pelajar, pekerja, hingga para profesional yang ingin mengelola keuangan pribadi dengan lebih baik. Kami memahami bahwa setiap orang memiliki kebutuhan dan tujuan yang berbeda, itulah sebabnya kami hadir untuk memberikan solusi yang tepat dan mudah diterapkan.
+            Di sini, kami menyediakan berbagai tips, panduan, dan strategi menabung yang dapat
+            diterapkan oleh semua orang, mulai dari pelajar, pekerja, hingga para profesional yang
+            ingin mengelola keuangan pribadi dengan lebih baik. Kami memahami bahwa setiap orang
+            memiliki kebutuhan dan tujuan yang berbeda, itulah sebabnya kami hadir untuk memberikan
+            solusi yang tepat dan mudah diterapkan.
           </p>
           <p class="text-lg">
             Aplikasi ini dibuat untuk membantu pengguna mengelola keuangan mereka dengan lebih baik
@@ -66,7 +76,7 @@ Mari mulai perjalanan finansial Anda bersama kami, karena menabung untuk masa de
         </div>
 
         <!-- Gambar kedua tanpa animasi -->
-        <div class="flex-1 mb-6 blockAnimRL ">
+        <div class="flex-1 mb-6 blockAnimRL">
           <img :src="gambarDua" alt="Menabung" class="rounded-lg shadow-lg w-full h-auto" />
         </div>
       </div>

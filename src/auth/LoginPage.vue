@@ -21,7 +21,9 @@ const handleLogin = async () => {
     const response = await store.dispatch('login', userData)
 
     toast.success('Login berhasil!', response)
-    router.push('/')
+
+    // Redirect user to specific page based on their role
+    router.push(response.redirect)
   } catch (error) {
     toast.error('Login gagal!')
   }
