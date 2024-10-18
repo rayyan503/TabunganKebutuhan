@@ -18,7 +18,6 @@ const store = useStore()
 const isLoggedIn = computed(() => store.state.user !== null)
 const handleLogout = () => {
   store.commit('LOGOUT_SUCCESS')
-  store.state.user = null
   toast.success('Logout berhasil!')
   router.push('/')
 }

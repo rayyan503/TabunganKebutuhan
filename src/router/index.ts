@@ -36,7 +36,8 @@ const router = createRouter({
     {
       path: '/aktivitas',
       name: 'aktivitas',
-      component: () => import('../views/ActivityView.vue')
+      component: () => import('../views/ActivityView.vue'),
+      meta: { requiresAuth: true }
     },
     {
       path: '/login',

@@ -36,7 +36,13 @@ export default {
       const response = await axios(config)
       commit('LOGIN_SUCCESS', response.data)
       console.log('Login response:', response)
-      return response.data
+
+      // Redirect user based on their role
+      if (response.data.role === 'admin') {
+        return { redirect: '/dashboard' }
+      } else {
+        return { redirect: '/' }
+      }
     } catch (error) {
       const errorMessage = error.response?.data?.message || 'Login failed!'
       commit('LOGIN_FAILURE', errorMessage)
