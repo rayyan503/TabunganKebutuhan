@@ -48,7 +48,6 @@ export default {
   },
 
   methods: {
-    // Metode untuk mengambil daftar data deposit
     async fetchDepositList() {
       try {
         const response = await axios.get(
@@ -62,7 +61,6 @@ export default {
       }
     },
 
-    // Metode untuk memfilter deposit berdasarkan query pencarian
     filterDeposits() {
       const query = this.searchQuery.toLowerCase()
       this.filteredData = this.depositData.filter((item) => {
@@ -73,7 +71,6 @@ export default {
       })
     },
 
-    // Metode untuk menampilkan formulir tambah data dengan SweetAlert
     showSavingsForm() {
       Swal.fire({
         title: 'Formulir Menabung',
