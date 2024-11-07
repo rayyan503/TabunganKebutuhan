@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="flex">
     <Sidebar v-if="isSidebarVisibleRoute" />
-    <div class="flex-grow p-4">
+    <div class="flex-grow">
       <RouterView />
     </div>
   </div>
@@ -32,6 +32,5 @@ const isSidebarVisibleRoute = computed(() => {
 
 .flex-grow {
   flex-grow: 1;
-  padding: 16px;
 }
 </style>

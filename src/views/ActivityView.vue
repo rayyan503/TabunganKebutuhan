@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue'
 import NavbarComponent from '../components/NavbarComponent.vue'
 import FooterComponent from '@/components/FooterComponent.vue'
-import tujuan from '../assets/alam1.webp'
+import tujuan from '../assets/images/undraw_make_it_rain_re_w9pc.svg'
 import Swal from 'sweetalert2'
 import SliderComponent from '../components/SliderComponent.vue'
 

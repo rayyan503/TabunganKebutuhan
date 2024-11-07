@@ -1,7 +1,7 @@
 <template>
   <footer class="bg-gray-800 text-white py-6">
     <div
-      class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"
+      class="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"
     >
       <!-- Section Kiri: Informasi Kontak (Email, Lokasi) -->
       <div class="text-center md:text-left mb-4 md:mb-0 scalingView">
