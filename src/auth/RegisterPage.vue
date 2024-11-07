@@ -3,15 +3,15 @@
     <div class="bg-white shadow-md rounded-lg flex flex-col md:flex-row w-full max-w-4xl">
       <!-- Left side (form) -->
       <div
-        class="hidden md:flex w-full md:w-1/2 text-white font-black p-8s rounded-t-lg md:rounded-t-none md:rounded-l-lg flex-col items-center justify-center"
+        class="hidden md:flex w-full md:w-1/2 text-gray-700 font-black p-8s rounded-t-lg md:rounded-t-none md:rounded-l-lg flex-col items-center justify-center"
         :style="{
           backgroundImage: `url(${alamDua})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          height: '100vh'
+          height: '95vh'
         }"
       >
-        <div class="backdrop-blur w-full text-center">
+        <div class="w-full text-center">
           <h2 class="text-3xl font-black mb-4">Daftar Akun</h2>
           <p class="text-xl mb-2">Untuk Mengakses semua fitur di web ini.</p>
         </div>
@@ -19,7 +19,7 @@
 
       <!-- Right side (form) -->
       <div
-        class="w-full md:w-1/2 p-8 rounded-b-lg md:rounded-b-none md:rounded-r-lg flex flex-col justify-center relative"
+        class="w-full bg-slate-50 md:w-1/2 p-8 rounded-b-lg md:rounded-b-none md:rounded-r-lg flex flex-col justify-center relative"
       >
         <button
           class="md:hidden absolute top-4 left-4 text-blue-500 mb-10"
@@ -143,7 +143,7 @@
 import { ref } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-import alamDua from '../assets/loginPT1.jpg'
+import alamDua from '../assets/images/undraw_stock_prices_re_js33.svg'
 import { useToast } from 'vue-toast-notification'
 const toast = useToast()
 

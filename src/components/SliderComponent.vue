@@ -38,9 +38,9 @@
 </template>
 
 <script>
-import slide1 from '../assets/uangJatuh.jpg';
-import slide2 from '../assets/uangTepi.jpg';
-import slide3 from '../assets/barter.jpg';
+import slide1 from '../assets/images/undraw_investment_re_rpk5.svg';
+import slide2 from '../assets/images/undraw_online_banking_re_kwqh.svg';
+import slide3 from '../assets/images/undraw_online_payments_re_y8f2.svg';
 
 export default {
     name: 'SliderComponent',

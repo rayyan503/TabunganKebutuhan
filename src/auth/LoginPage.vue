@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import alamSatu from '../assets/loginPT0.jpg'
+import alamSatu from '../assets/images/undraw_stock_prices_re_js33.svg'
 import { useRouter } from 'vue-router'
 import { useToast } from 'vue-toast-notification'
 import { useStore } from 'vuex'
@@ -40,7 +40,7 @@ const toggleShowPassword = () => {
     <div class="bg-white shadow-md rounded-lg flex flex-col md:flex-row w-full max-w-4xl">
       <!-- Left side (hidden on mobile) -->
       <div
-        class="hidden md:flex w-full md:w-1/2 text-white font-black p-8s rounded-t-lg md:rounded-t-none md:rounded-l-lg flex-col items-center justify-center"
+        class="hidden md:flex w-full md:w-1/2 text-gray-700 font-black p-8s rounded-t-lg md:rounded-t-none md:rounded-l-lg flex-col items-center justify-center"
         :style="{
           backgroundImage: `url(${alamSatu})`,
           backgroundSize: 'cover',
@@ -48,15 +48,15 @@ const toggleShowPassword = () => {
           height: '95vh'
         }"
       >
-        <div class="backdrop-blur w-full text-center">
-          <h2 className="text-3xl font-black mb-4 ">Menabung Kebutuhan</h2>
+        <div class="w-full text-center">
+          <h2 className="text-3xl font-black mb-4">Menabung Kebutuhan</h2>
           <p className="text-xl mb-2">Kehidupan dan keluarga anda</p>
         </div>
       </div>
 
       <!-- Right side (login form) -->
       <div
-        class="w-full md:w-1/2 p-8 rounded-b-lg md:rounded-b-none md:rounded-r-lg flex flex-col justify-center items-center md:items-start"
+        class="w-full md:w-1/2 p-8 rounded-b-lg md:rounded-b-none md:rounded-r-lg flex flex-col justify-center items-center md:items-start bg-slate-50"
       >
         <h2 class="text-2xl font-bold">Masuk</h2>
         <p class="text-gray-600 mb-6 text-center md:text-left">
@@ -136,3 +136,9 @@ const toggleShowPassword = () => {
     </div>
   </div>
 </template>
+
+<style>
+.txt {
+  text-shadow: 1px 1px 2px rgb(199, 189, 189);
+}
+</style>

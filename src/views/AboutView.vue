@@ -2,8 +2,8 @@
 import { ref, onMounted } from 'vue'
 import NavbarComponent from '../components/NavbarComponent.vue'
 import FooterComponent from '@/components/FooterComponent.vue'
-import gambarSatu from '../assets/tabungUang.jpg'
-import gambarDua from '../assets/setorUang.jpg'
+import gambarSatu from '../assets/images/undraw_receipt_re_fre3.svg'
+import gambarDua from '../assets/images/undraw_transfer_money_re_6o1h.svg'
 
 const isLoading = ref(true)
 

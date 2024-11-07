@@ -1,43 +1,57 @@
 <template>
-  <!-- Untuk tampilan seluler atau tablet -->
-  <div class="relative block md:hidden" @mouseenter="stopAutoSlide" @mouseleave="startAutoSlide">
   <div class="overflow-hidden">
-      <div class="flex transition-transform duration-500" :style="{ transform: 'translateX(-' + currentIndex * 100 + '%)'}">
-        <div v-for="(item, index) in items" :key="index" class="min-w-full h-screen flex justify-center items-center">
-          <img :src="item.image" :alt="item.title" class="max-w-full h-auto object-cover duration-500 hover:scale-105 hover:shadow-xl">
+    <div>
+      <!-- Untuk tampilan seluler atau tablet -->
+      <div class="relative block md:hidden bg-white" @mouseenter="stopAutoSlide" @mouseleave="startAutoSlide">
+        <div class="overflow-hidden">
+          <div class="flex transition-transform duration-500"
+            :style="{ transform: 'translateX(-' + currentIndex * 100 + '%)' }">
+            <div v-for="(item, index) in items" :key="index"
+              class="min-w-full h-screen flex justify-center items-center">
+              <img :src="item.image" :alt="item.title"
+                class="max-w-full h-auto object-cover duration-500 hover:scale-105 hover:shadow-xl">
+            </div>
+          </div>
         </div>
+        <button @click="prevSlide"
+          class="absolute top-1/2 left-4 transform -translate-y-1/2 text-white bg-gray-800 rounded-full p-2 duration-500 hover:scale-105 hover:shadow-xl">
+          &#10094;
+        </button>
+        <button @click="nextSlide"
+          class="absolute top-1/2 right-4 transform -translate-y-1/2 text-white bg-gray-800 rounded-full p-2 duration-500 hover:scale-105 hover:shadow-xl">
+          &#10095;
+        </button>
       </div>
-    </div>
-    <button @click="prevSlide" class="absolute top-1/2 left-4 transform -translate-y-1/2 text-white bg-gray-800 rounded-full p-2 duration-500 hover:scale-105 hover:shadow-xl">
-      &#10094;
-    </button>
-    <button @click="nextSlide" class="absolute top-1/2 right-4 transform -translate-y-1/2 text-white bg-gray-800 rounded-full p-2 duration-500 hover:scale-105 hover:shadow-xl">
-      &#10095;
-    </button>
-  </div>
 
-  <!-- Untuk tampilan desktop -->
-  <div class="relative hidden md:block" @mouseenter="stopAutoSlide" @mouseleave="startAutoSlide">
-  <div class="overflow-hidden">
-      <div class="flex transition-transform duration-500" :style="{ transform: 'translateX(-' + currentIndex * 100 + '%)'}">
-        <div v-for="(item, index) in items" :key="index" class="min-w-full h-screen flex justify-center items-center">
-          <img :src="item.image" :alt="item.title" class="max-w-full h-full object-cover duration-500 hover:scale-105 hover:shadow-xl">
+      <!-- Untuk tampilan desktop -->
+      <div class="relative hidden md:block w-full h-full" @mouseenter="stopAutoSlide" @mouseleave="startAutoSlide">
+        <div class="overflow-hidden h-[80vh] p-40">
+          <div class="flex transition-transform duration-500"
+            :style="{ transform: 'translateX(-' + currentIndex * 100 + '%)' }">
+            <div v-for="(item, index) in items" :key="index"
+              class="min-w-full h-screen flex justify-center items-center">
+              <img :src="item.image" :alt="item.title"
+                class="max-w-full h-full object-cover duration-500 hover:scale-105 hover:shadow-xl">
+            </div>
+          </div>
         </div>
+        <button @click="prevSlide"
+          class="absolute top-1/2 left-20 transform -translate-y-1/2 text-white bg-gray-800 rounded-full p-2 duration-500 hover:scale-105 hover:shadow-xl">
+          &#10094;
+        </button>
+        <button @click="nextSlide"
+          class="absolute top-1/2 right-20 transform -translate-y-1/2 text-white bg-gray-800 rounded-full p-2 duration-500 hover:scale-105 hover:shadow-xl">
+          &#10095;
+        </button>
       </div>
     </div>
-    <button @click="prevSlide" class="absolute top-1/2 left-4 transform -translate-y-1/2 text-white bg-gray-800 rounded-full p-2 duration-500 hover:scale-105 hover:shadow-xl">
-      &#10094;
-    </button>
-    <button @click="nextSlide" class="absolute top-1/2 right-4 transform -translate-y-1/2 text-white bg-gray-800 rounded-full p-2 duration-500 hover:scale-105 hover:shadow-xl">
-      &#10095;
-    </button>
   </div>
 </template>
 
 <script>
-import slide1 from '../assets/simpanUang01.jpg';
-import slide2 from '../assets/uangDompet.jpg';
-import slide3 from '../assets/hitungUang.jpg';
+import slide1 from '../assets/images/undraw_credit_card_payments_re_qboh.svg';
+import slide2 from '../assets/images/undraw_investing_re_bov7.svg';
+import slide3 from '../assets/images/undraw_investment_data_re_sh9x.svg';
 
 export default {
   name: 'CarouselComponent',

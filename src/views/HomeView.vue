@@ -3,7 +3,7 @@ import NavbarComponent from '../components/NavbarComponent.vue'
 import CarouselComponent from '../components/CarouselComponent.vue'
 import FooterComponent from '../components/FooterComponent.vue'
 import SliderComponent from '../components/SliderComponent.vue'
-import gambarSatu from '../assets/tabungUang.jpg'
+import gambarSatu from '../assets/images/undraw_personal_finance_re_ie6k.svg'
 import { onMounted, ref } from 'vue'
 
 const isLoading = ref(true)

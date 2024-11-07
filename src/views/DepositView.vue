@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import NavbarComponent from '../components/NavbarComponent.vue'
-import dolar from '../assets/banner.jpg'
-import koin01 from '../assets/koin01.jpg'
-import koin02 from '../assets/koin02.jpg'
-import koin03 from '../assets/koinLaptop.jpg'
-import setor from '../assets/setorUang.jpg'
+import dolar from '../assets/images/undraw_stock_prices_re_js33.svg'
+import koin01 from '../assets/images/undraw_wallet_re_cx9u.svg'
+import koin02 from '../assets/images/undraw_liked_w52t.svg'
+import koin03 from '../assets/images/undraw_online_banking_re_kwqh.svg'
+import setor from '../assets/images/undraw_make_it_rain_re_w9pc.svg'
 import { computed, onMounted, ref } from 'vue'
 import FooterComponent from '@/components/FooterComponent.vue'
 import Swal from 'sweetalert2'
@@ -186,7 +186,7 @@ const showSavingsForm = () => {
         }"
       >
         <div
-          class="hero-text md:flex w-full md:w-1/2 text-white font-blackp-8s rounded-t-lg md:rounded-t-none md:rounded-l-lg flex-col items-center justify-center"
+          class="hero-text md:flex w-full md:w-1/2 text-black font-blackp-8s rounded-t-lg md:rounded-t-none md:rounded-l-lg flex-col items-center justify-center"
         >
           <h1 class="text-6xl font-black mb-4">Menabung Kebutuhan</h1>
           <p class="text-2xl font-medium mb-2">Tabungan Terpercaya Masyarakat</p>
@@ -202,7 +202,7 @@ const showSavingsForm = () => {
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div class="lg:col-span-1 animO blockAnimLR">
-            <div class="aspect-w-16 aspect-h-9">
+            <div class="h-96 aspect-w-16 aspect-h-9">
               <img :src="koin02" class="w-full h-full object-cover rounded-lg shadow-md" />
             </div>
           </div>
@@ -377,6 +377,7 @@ html {
   left: 50%;
   transform: translate(-100%, -100%);
 }
+
 
 @media (max-width: 768px) {
   .hero-text {
