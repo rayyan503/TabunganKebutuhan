@@ -1,84 +1,85 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import Swal from 'sweetalert2'
+
 import NavbarComponent from '../components/NavbarComponent.vue'
 import FooterComponent from '@/components/FooterComponent.vue'
-import tujuan from '../assets/images/undraw_make_it_rain_re_w9pc.svg'
-import Swal from 'sweetalert2'
-import SliderComponent from '../components/SliderComponent.vue'
+import SliderComponent from '@/components/SliderComponent.vue'
+import gambarDua from '../assets/images/undraw_transfer_money_re_6o1h.svg'
 
-const months = [
-  'Januari',
-  'Februari',
-  'Maret',
-  'April',
-  'Mei',
-  'Juni',
-  'Juli',
-  'Agustus',
-  'September',
-  'Oktober',
-  'November',
-  'Desember'
-]
-
-const selectedMonth = ref('Januari')
-const saldo = 100000
-const penarikan = ref(0)
+// State variables
 const isLoading = ref(true)
-
-const tarikSaldo = () => {
-  Swal.fire({
-    title: 'Form Pengambilan Uang Tabungan',
-    html: `
-      <div style="display: flex; flex-direction: column; gap: 10px;">
-        <input type="text" id="nama" class="swal2-input" placeholder="Masukan Nama Lengkap" />
-        <input type="text" id="alamat" class="swal2-input" placeholder="Masukan Alamat " />
-        <input type="text" id="nik" class="swal2-input" placeholder="Masukan NIK " />
-        <input type="text" id="tujuan" class="swal2-input" placeholder="Tujuan tarik tunai" />
-        <input type="number" id="nominal" class="swal2-input" placeholder="Nominal penarikan" min="0" max="${saldo}" />
-      </div>
-    `,
-    confirmButtonText: 'Lanjutkan',
-    cancelButtonText: 'Batal',
-    showCancelButton: true,
-    focusConfirm: false,
-    preConfirm: () => {
-      const nama = (document.getElementById('nama') as HTMLInputElement).value
-      const alamat = (document.getElementById('alamat') as HTMLInputElement).value
-      const nik = (document.getElementById('nik') as HTMLInputElement).value
-      const tujuan = (document.getElementById('tujuan') as HTMLInputElement).value
-      const nominal = (document.getElementById('nominal') as HTMLInputElement).value
-
-      if (!nama || !alamat || !nik || !tujuan || !nominal) {
-        Swal.showValidationMessage('Semua field harus diisi')
-        return false
-      }
-
-      if (parseInt(nominal) > saldo) {
-        Swal.showValidationMessage('Nominal penarikan melebihi saldo')
-        return false
-      }
-
-      return { nama, alamat, nik, tujuan, nominal }
-    }
-  }).then((result) => {
-    if (result.isConfirmed) {
-      const { nama, alamat, nik, tujuan, nominal } = result.value
-      Swal.fire(
-        'Berhasil',
-        `Nama: ${nama}, Alamat: ${alamat}, NIK: ${nik}, Tujuan: ${tujuan}, Penarikan: Rp. ${parseInt(nominal).toLocaleString('id-ID')}`,
-        'success'
-      )
-      penarikan.value = parseInt(nominal)
-    }
-  })
-}
-
+const transactionHistory = ref<{ date: string; nominal: number; total: number; note: string }[]>([])
+const saldo = ref(100000)
+const tarik = ref(0)
 onMounted(() => {
+  // Simulating a loading delay
   setTimeout(() => {
     isLoading.value = false
   }, 500)
 })
+
+// Function for saving money
+const menabung = async () => {
+  const { value: formValues } = await Swal.fire({
+    title: 'Menabung',
+    html:
+      '<label for="tanggal" class="block mb-2">Tanggal</label>' +
+      '<input id="tanggal" type="date" class="swal2-input">' +
+      '<label for="nominal" class="block mb-2">Nominal</label>' +
+      '<input id="nominal" type="number" class="swal2-input" placeholder="Masukkan nominal">',
+    focusConfirm: false,
+    preConfirm: () => {
+      const tanggal = (document.getElementById('tanggal') as HTMLInputElement).value
+      const nominal = parseInt((document.getElementById('nominal') as HTMLInputElement).value, 10)
+      return { tanggal, nominal }
+    }
+  })
+
+  if (formValues && formValues.tanggal && formValues.nominal > 0) {
+    saldo.value += formValues.nominal
+    transactionHistory.value.push({
+      date: formValues.tanggal,
+      nominal: formValues.nominal,
+      total: saldo.value,
+      note: 'Menabung'
+    })
+    Swal.fire('Berhasil!', 'Tabungan berhasil ditambahkan.', 'success')
+  }
+}
+
+// Function for withdrawing money
+const menarikSaldo = async () => {
+  const { value: formValues } = await Swal.fire({
+    title: 'Tarik Saldo',
+    html:
+      '<label for="tanggal" class="block mb-2">Tanggal</label>' +
+      '<input id="tanggal" type="date" class="swal2-input">' +
+      '<label for="nominal" class="block mb-2">Nominal</label>' +
+      '<input id="nominal" type="number" class="swal2-input" placeholder="Masukkan nominal">',
+    focusConfirm: false,
+    preConfirm: () => {
+      const tanggal = (document.getElementById('tanggal') as HTMLInputElement).value
+      const nominal = parseInt((document.getElementById('nominal') as HTMLInputElement).value, 10)
+      return { tanggal, nominal }
+    }
+  })
+
+  if (formValues && formValues.tanggal && formValues.nominal > 0) {
+    if (formValues.nominal <= saldo.value) {
+      saldo.value -= formValues.nominal
+      transactionHistory.value.push({
+        date: formValues.tanggal,
+        nominal: -formValues.nominal,
+        total: saldo.value,
+        note: 'Penarikan'
+      })
+      Swal.fire('Berhasil!', 'Saldo berhasil ditarik.', 'success')
+    } else {
+      Swal.fire('Gagal!', 'Saldo tidak mencukupi.', 'error')
+    }
+  }
+}
 </script>
 
 <template>
@@ -95,61 +96,68 @@ onMounted(() => {
       <NavbarComponent />
 
       <div class="max-w-7xl mx-auto p-4 bg-gray-50 mt-32">
-        <!-- Tabel Bulanan -->
+        <!-- Transaction History Table -->
         <div class="w-full max-w-3xl mx-auto mb-6 p-4 bg-gray-100 rounded-lg shadow-md">
-          <div class="flex justify-between items-center mb-2">
-            <span class="font-bold">Bulan</span>
-            <span class="font-bold">Nominal</span>
-            <span class="font-bold">Total</span>
+          <h1 class="text-center mb-5 text-xl font-bold">Riwayat Transaksi</h1>
+          <div class="flex justify-between items-center mb-2 font-bold">
+            <span>Tanggal</span>
+            <span>Nominal</span>
+            <span>Total</span>
+            <span>Catatan</span>
           </div>
 
-          <div class="flex justify-between items-center p-2 bg-white rounded-md shadow-md">
-            <select v-model="selectedMonth" class="border rounded px-3 py-1">
-              <option v-for="month in months" :key="month" :value="month">{{ month }}</option>
-            </select>
-            <span>Rp. 100.000</span>
-            <span>Rp. {{ saldo ? saldo.toLocaleString('id-ID') : '0' }}</span>
-            <!-- Fallback jika saldo undefined -->
+          <div
+            v-for="(transaction, index) in transactionHistory"
+            :key="index"
+            class="flex justify-between items-center p-2 bg-white rounded-md shadow-sm mb-2"
+          >
+            <span>{{ transaction.date }}</span>
+            <span>Rp. {{ transaction.nominal.toLocaleString('id-ID') }}</span>
+            <span>Rp. {{ transaction.total.toLocaleString('id-ID') }}</span>
+            <span>{{ transaction.note }}</span>
           </div>
         </div>
 
-        <!-- Informasi Tabungan -->
+        <!-- Savings Information -->
         <div class="w-full max-w-3xl mx-auto p-4 bg-gray-200 rounded-lg shadow-md">
-          <h2 class="font-bold text-center mb-4">Tabungan Saat Ini</h2>
-          <div class="flex justify-between">
-            <span>Saldo Saat ini</span>
-            <span>Rp. {{ saldo ? saldo.toLocaleString('id-ID') : '0' }}</span>
-            <!-- Fallback jika saldo undefined -->
+          <h2 class="font-bold text-center mb-4 text-lg">Tabungan Saat Ini</h2>
+          <div class="flex justify-between mb-4">
+            <span>Saldo Saat Ini:</span>
+            <span>Rp. {{ saldo.toLocaleString('id-ID') }}</span>
           </div>
-          <div class="flex justify-between">
-            <span>Penarikan Saldo</span>
-            <span>Rp. {{ penarikan ? penarikan.toLocaleString('id-ID') : '0' }}</span>
-            <!-- Fallback jika penarikan undefined -->
-          </div>
-          <div class="flex justify-between">
-            <span>Penambahan Saldo</span>
-            <span>Rp. 100.000</span>
+          <div class="flex justify-between mb-4">
+            <span>Penarikan Saldo:</span>
+            <span>Rp. {{ tarik.toLocaleString('id-ID') }}</span>
           </div>
 
-          <!-- Tombol Tarik Saldo -->
+          <!-- Buttons -->
           <button
-            @click="tarikSaldo"
+            @click="menabung"
+            class="mt-4 w-full bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600"
+          >
+            Menabung
+          </button>
+          <button
+            @click="menarikSaldo"
             class="mt-4 w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600"
           >
             Tarik Saldo
           </button>
         </div>
       </div>
+
       <div
-        class="flex flex-col md:flex-row items-center justify-center p-8 max-w-7xl mx-auto"
+        class="flex flex-col md:flex-row items-center gap-3 justify-center p-8 max-w-7xl mx-auto"
         style="margin-top: 20vh"
       >
         <div class="flex-1 md:mr-8 blockAnimLR">
           <h1 class="text-3xl font-bold mb-4">Tujuan Menabung</h1>
           <p class="text-lg mb-4">
-            Menabung adalah langkah penting dalam mengelola keuangan. Dengan menabung, kita dapat
-            mempersiapkan masa depan yang lebih baik, baik untuk kebutuhan darurat maupun untuk
-            tujuan jangka panjang seperti pendidikan, kesehatan, atau membeli rumah impian.
+            Di sini, kami menyediakan berbagai tips, panduan, dan strategi menabung yang dapat
+            diterapkan oleh semua orang, mulai dari pelajar, pekerja, hingga para profesional yang
+            ingin mengelola keuangan pribadi dengan lebih baik. Kami memahami bahwa setiap orang
+            memiliki kebutuhan dan tujuan yang berbeda, itulah sebabnya kami hadir untuk memberikan
+            solusi yang tepat dan mudah diterapkan.
           </p>
           <p class="text-lg">
             Aplikasi ini dibuat untuk membantu pengguna mengelola keuangan mereka dengan lebih baik
@@ -159,14 +167,12 @@ onMounted(() => {
           </p>
         </div>
 
-        <!-- Gambar kedua tanpa animasi -->
-        <div class="flex-1 mb-6 md:mb-0 blockAnimRL">
-          <img :src="tujuan" alt="Menabung" class="rounded-lg shadow-lg w-full h-auto" />
+        <div class="flex-1 mb-6 blockAnimRL">
+          <img :src="gambarDua" alt="Menabung" class="rounded-lg shadow-lg w-full h-auto" />
         </div>
       </div>
 
       <SliderComponent />
-
       <FooterComponent />
     </div>
   </div>
