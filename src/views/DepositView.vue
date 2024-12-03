@@ -7,18 +7,28 @@ import koin03 from '../assets/images/undraw_online_banking_re_kwqh.svg'
 import setor from '../assets/images/undraw_make_it_rain_re_w9pc.svg'
 import { computed, onMounted, ref } from 'vue'
 import FooterComponent from '@/components/FooterComponent.vue'
-import Swal from 'sweetalert2'
+
 import ContactView from './ContactView.vue'
-import axios from 'axios'
+import { useRouter } from 'vue-router'
 
 const isLoading = ref(true)
+const isLoggedIn = ref(false)
+const router = useRouter()
 
 onMounted(() => {
   setTimeout(() => {
     isLoading.value = false
+    isLoggedIn.value = Boolean(localStorage.getItem('token'))
   }, 500)
 })
 
+const handleCheckActivity = () => {
+  if (isLoggedIn.value) {
+    router.push('/aktivitas')
+  } else {
+    router.push('/login')
+  }
+}
 const amounts = ref([5000, 10000, 20000, 50000, 100000])
 const nominals = ref([2000, 4000, 6000, 8000, 10000])
 const uangs = ref([100000, 200000, 300000, 400000, 500000])
@@ -64,105 +74,6 @@ const selectedMonth = ref(months.value[0])
 const totalSavings = computed(() => selectedAmount.value * selectedPeriod.value.days)
 const totalDuit = computed(() => selectedNominal.value * selectedWeek.value.days)
 const totalMonthDuit = computed(() => selectedUang.value * selectedMonth.value.days)
-
-const showSavingsForm = () => {
-  Swal.fire({
-    title: 'Formulir Menabung',
-    html: `
-      <div class="text-left space-y-4">
-        <label for="fullName" class="block text-sm font-medium">Nama Lengkap</label>
-        <input type="text" id="fullName" class="swal2-input" placeholder="Nama Lengkap" />
-
-        <label for="address" class="block text-sm font-medium">Alamat</label>
-        <input type="text" id="address" class="swal2-input" placeholder="Alamat" />
-
-        <label for="nik" class="block text-sm font-medium">NIK</label>
-        <input type="number" id="nik" class="swal2-input" placeholder="NIK" />
-
-        <label for="purpose" class="block text-sm font-medium">Tujuan Menabung</label>
-        <input type="text" id="goals" class="swal2-input" placeholder="Tujuan Menabung" />
-        
-        <label for="nominal" class="block text-sm font-medium">Nominal</label>
-        <input type="number" id="nominal"  class="swal2-input" placeholder="Masukkan nominal" />
-
-        <label for="longTime" class="block text-sm font-medium">Lama Menabung</label>
-         <input type="number" id="longTime" class="swal2-input w-full md:w-auto" placeholder="Masukkan jumlah" />
-        <div class="flex flex-col md:flex-row gap-4">
-          <select id="periodType" class="swal2-input w-full md:w-auto">
-            <option value="daily">Hari</option>
-            <option value="weekly">Minggu</option>
-            <option value="monthly">Bulan</option>
-          </select>
-        </div>
-      </div>
-    `,
-    showCancelButton: true,
-    confirmButtonText: 'Simpan',
-    customClass: {
-      popup: 'rounded-lg p-8 max-w-md w-full',
-      title: 'text-2xl font-bold',
-      confirmButton: 'bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded',
-      cancelButton: 'bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded'
-    },
-    preConfirm: () => {
-      const fullName = (document.getElementById('fullName') as HTMLInputElement).value.trim()
-      const address = (document.getElementById('address') as HTMLInputElement).value.trim()
-      const nik = (document.getElementById('nik') as HTMLInputElement).value.trim()
-      const purpose = (document.getElementById('goals') as HTMLInputElement).value.trim()
-      const nominal = parseFloat(
-        (document.getElementById('nominal') as HTMLInputElement).value.trim()
-      )
-      const periodType = (document.getElementById('periodType') as HTMLSelectElement).value.trim()
-      const longTime = parseInt(
-        (document.getElementById('longTime') as HTMLInputElement).value.trim()
-      )
-
-      if (
-        !fullName ||
-        !address ||
-        !nik ||
-        !purpose ||
-        isNaN(nominal) ||
-        nominal <= 0 ||
-        !periodType ||
-        isNaN(longTime) ||
-        longTime <= 0
-      ) {
-        Swal.showValidationMessage('Harap lengkapi semua kolom dengan benar')
-        return false
-      }
-
-      return { fullName, address, nik, purpose, nominal, periodType, longTime }
-    }
-  }).then(async (result) => {
-    if (result.isConfirmed) {
-      const formData = {
-        nik: result.value.nik,
-        full_name: result.value.fullName,
-        address: result.value.address,
-        goals: result.value.purpose,
-        target: result.value.nominal,
-        unit: result.value.periodType,
-        due: result.value.longTime
-      }
-      try {
-        const response = await axios.post(
-          'https://rest-api-go-production-add4.up.railway.app/deposit/create',
-          formData,
-          {
-            headers: { 'Content-Type': 'application/json' }
-          }
-        )
-        console.log('API Response:', response.data)
-
-        Swal.fire('Tersimpan!', 'Pendaftaran Anda Sedang Diproses', 'success')
-      } catch (error) {
-        console.error('API Error:', error.response?.data || error)
-        Swal.fire('Gagal!', 'Terjadi kesalahan saat menyimpan data', 'error')
-      }
-    }
-  })
-}
 </script>
 
 <template>
@@ -228,17 +139,16 @@ const showSavingsForm = () => {
           </div>
 
           <div class="flex-1 md:ml-8 blockAnimLR">
-            <h2 class="text-2xl font-bold mb-4">Mulai Menabung</h2>
+            <h2 class="text-2xl font-bold mb-4">Cek Aktivitas</h2>
             <p class="text-lg mb-4">
-              Mulai sekarang, mari wujudkan impianmu dengan menabung! Setiap langkah kecil membawa
-              kita lebih dekat pada tujuan besar.
+              Yuk, check aktivitas menabung anda melihat saldo dan cara penarikan
             </p>
 
             <button
               class="bg-green-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-600"
-              :onclick="showSavingsForm"
+              @click="handleCheckActivity"
             >
-              Ayo Menabung
+              Cek Aktivitas
             </button>
           </div>
         </div>
@@ -377,7 +287,6 @@ html {
   left: 50%;
   transform: translate(-100%, -100%);
 }
-
 
 @media (max-width: 768px) {
   .hero-text {
