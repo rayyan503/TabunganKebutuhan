@@ -5,7 +5,7 @@ export default {
     try {
       let config = {
         method: 'post',
-        url: `https://rest-api-go-production-add4.up.railway.app/user/register`,
+        url: `http://localhost:8080/user/register`,
         headers: {
           'Content-Type': 'application/json'
         },
@@ -26,7 +26,7 @@ export default {
     try {
       let config = {
         method: 'post',
-        url: `https://rest-api-go-production-add4.up.railway.app/user/login`,
+        url: `http://localhost:8080/user/login`,
         headers: {
           'Content-Type': 'application/json'
         },

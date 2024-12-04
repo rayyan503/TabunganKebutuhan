@@ -3,7 +3,7 @@
     <table class="min-w-full bg-white">
       <thead>
         <tr>
-          <th class="py-2 px-4 border-b">User ID</th>
+          <th class="py-2 px-4 border-b">NIK</th>
           <th class="py-2 px-4 border-b">Username</th>
           <th class="py-2 px-4 border-b">Nama Lengkap</th>
           <th class="py-2 px-4 border-b">Email</th>
@@ -14,8 +14,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in items" :key="item.user_id">
-          <td class="py-2 px-4 border-b">{{ item.user_id }}</td>
+        <tr v-for="item in items" :key="item.nik">
+          <td class="py-2 px-4 border-b">{{ item.nik }}</td>
           <td class="py-2 px-4 border-b">{{ item.username }}</td>
           <td class="py-2 px-4 border-b">{{ item.full_name }}</td>
           <td class="py-2 px-4 border-b">{{ item.email }}</td>
@@ -25,7 +25,7 @@
           <td class="py-2 px-4 border-b">
             <!-- Icon delete untuk hapus user -->
             <button
-              @click="deleteUser(item.user_id)"
+              @click="deleteUser(item.nik)"
               class="bg-red-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-red-600"
             >
               Hapus
@@ -66,10 +66,10 @@ export default {
 
       if (result.isConfirmed) {
         try {
-          // Memanggil API DELETE untuk hapus user berdasarkan user_id
-          await axios.delete(`https://rest-api-go-production-add4.up.railway.app/user/delete`, {
+          // Memanggil API DELETE untuk hapus user berdasarkan nik
+          await axios.delete(`http://localhost:8080/user/delete`, {
             data: {
-              user_id: userId
+              nik: userId
             }
           })
 
