@@ -54,6 +54,15 @@
             />
           </div>
 
+          <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="fullname">NIK</label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="nik"
+              v-model="nik"
+              placeholder="Masukkan NIK"
+            />
+          </div>
           <!-- Email Input -->
           <div>
             <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
@@ -150,6 +159,7 @@ const toast = useToast()
 const username = ref('')
 const fullName = ref('')
 const email = ref('')
+const nik = ref('')
 const phoneNumber = ref('')
 const password = ref('')
 const confirmPassword = ref('')
@@ -181,6 +191,7 @@ const handleSubmit = async () => {
     !username.value ||
     !fullName.value ||
     !email.value ||
+    !nik.value ||
     !phoneNumber.value ||
     !password.value ||
     !confirmPassword.value
@@ -203,6 +214,7 @@ const handleSubmit = async () => {
     const userData = {
       username: username.value,
       full_name: fullName.value,
+      nik: nik.value,
       email: email.value,
       phone_number: phoneNumber.value,
       password: password.value

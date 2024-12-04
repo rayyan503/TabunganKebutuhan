@@ -18,7 +18,7 @@ const router = useRouter()
 onMounted(() => {
   setTimeout(() => {
     isLoading.value = false
-    isLoggedIn.value = Boolean(localStorage.getItem('token'))
+    isLoggedIn.value = Boolean(localStorage.getItem('nik'))
   }, 500)
 })
 

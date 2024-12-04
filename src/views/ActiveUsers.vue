@@ -38,17 +38,15 @@ export default {
   methods: {
     async fetchActiveUsers() {
       try {
-        const response = await axios.get(
-          'https://rest-api-go-production-add4.up.railway.app/user/list'
-        )
+        const response = await axios.get('http://localhost:8080/user/list')
         this.activeUsers = response.data
       } catch (error) {
         console.error('Gagal mengambil data pengguna:', error)
       }
     },
 
-    handleUserDeleted(deletedUserId) {
-      this.activeUsers = this.activeUsers.filter((user) => user.user_id !== deletedUserId)
+    handleUserDeleted(deletedNIK) {
+      this.activeUsers = this.activeUsers.filter((user) => user.nik !== deletedNIK)
     },
 
     showSavingsForm() {
@@ -56,6 +54,9 @@ export default {
         title: 'Formulir Menabung',
         html: `
           <div class="text-left space-y-4">
+             <label for="nik" class="block text-sm font-medium">NIK</label>
+            <input type="text" id="nik" class="swal2-input" placeholder="Masukkan NIK" />
+
             <label for="username" class="block text-sm font-medium">Username</label>
             <input type="text" id="username" class="swal2-input" placeholder="Masukkan Username" />
 
@@ -82,6 +83,7 @@ export default {
           cancelButton: 'bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded'
         },
         preConfirm: () => {
+          const nik = document.getElementById('nik').value.trim()
           const username = document.getElementById('username').value.trim()
           const fullName = document.getElementById('fullName').value.trim()
           const email = document.getElementById('email').value.trim()
@@ -89,16 +91,17 @@ export default {
           const noPhone = document.getElementById('noPhone').value.trim()
           const role = 'admin'
 
-          if (!username || !fullName || !email || !password || !noPhone || !role) {
+          if (!nik || !username || !fullName || !email || !password || !noPhone || !role) {
             Swal.showValidationMessage('Harap lengkapi semua kolom dengan benar')
             return false
           }
 
-          return { username, fullName, email, password, noPhone, role }
+          return { nik, username, fullName, email, password, noPhone, role }
         }
       }).then(async (result) => {
         if (result.isConfirmed) {
           const formData = {
+            nik: result.value.nik,
             email: result.value.email,
             full_name: result.value.fullName,
             username: result.value.username,
@@ -107,13 +110,9 @@ export default {
             role: result.value.role
           }
           try {
-            const response = await axios.post(
-              'https://rest-api-go-production-add4.up.railway.app/user/register',
-              formData,
-              {
-                headers: { 'Content-Type': 'application/json' }
-              }
-            )
+            const response = await axios.post('http://localhost:8080/user/register', formData, {
+              headers: { 'Content-Type': 'application/json' }
+            })
             console.log('API Response:', response)
 
             Swal.fire('Tersimpan!', 'Tambah Akun Admin diProses', 'success')

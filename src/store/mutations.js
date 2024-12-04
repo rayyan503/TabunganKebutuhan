@@ -8,13 +8,13 @@ export default {
   },
   LOGIN_SUCCESS(state, data) {
     state.user = data.user
-    localStorage.setItem('user', JSON.stringify(data.user))
+    localStorage.setItem('nik', data.nik)
   },
   LOGIN_FAILURE(state, error) {
     state.error = error
   },
   LOGOUT_SUCCESS(state) {
     state.user = null
-    localStorage.removeItem('user')
+    localStorage.removeItem('nik')
   }
 }
